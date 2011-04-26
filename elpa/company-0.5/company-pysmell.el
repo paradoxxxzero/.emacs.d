@@ -22,6 +22,7 @@
 ;;; Code:
 
 (eval-when-compile (require 'cl))
+(load  "~/.emacs.d/elisp/pysmell.el")
 (require 'pysmell)
 
 (defvar company-pysmell--available-p 'unknown)
