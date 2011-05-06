@@ -543,7 +543,7 @@ The timer is used only if `post-gc-hook' is not available.")
                (apply 'start-process "pymacs" buffer
                       (let ((python (getenv "PYMACS_PYTHON")))
                         (if (or (null python) (equal python ""))
-                            "python"
+                            "python2"
                           python))
                       "-c" (concat "import sys;"
                                    " from Pymacs.pymacs import main;"

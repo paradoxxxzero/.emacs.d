@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import bisect
 
 import rope.base.simplify
@@ -178,6 +179,8 @@ class _RealFinder(object):
 
     def _find_atom_start(self, offset):
         old_offset = offset
+        if offset >= len(self.code):
+            raise Exception(self.code[:123])
         if self.code[offset] == '\n':
             return offset + 1
         if self.code[offset].isspace():

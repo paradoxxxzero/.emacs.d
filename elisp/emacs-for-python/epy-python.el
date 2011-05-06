@@ -105,7 +105,7 @@ is passed after the options."
        (flymake-command-setup "pep8"))
 
      (defun flymake-pylint-init ()
-       (flymake-command-setup "python" (list (concat epy-install-dir "scripts/pylint-mod.py"))))
+       (flymake-command-setup "python2" (list (concat epy-install-dir "scripts/pylint-mod.py"))))
 
      (defun flymake-disable-python-checkers ()
        "Disable all python checkers"
