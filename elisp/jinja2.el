@@ -44,9 +44,11 @@
 
 (defvar jinja2-font-lock-keywords nil)
 (setq jinja2-font-lock-keywords (list
-   '("{# ?\\(\n?.*?\\)+ ?#}" . font-lock-comment-face)
-   '("{{ ?\\(.*?\\) ?}}" . (1 font-lock-variable-name-face))
-   '("| ?\\(a\\(?:bs\\|ttr\\)\\|batch\\|c\\(?:apitalize\\|enter\\)\\|d\\(?:\\(?:efaul\\|ictsor\\)t\\)\\|escape\\|f\\(?:i\\(?:\\(?:lesizeforma\\|rs\\)t\\)\\|loat\\|or\\(?:ceescape\\|mat\\)\\)\\|groupby\\|in\\(?:\\(?:den\\)?t\\)\\|join\\|l\\(?:ast\\|ength\\|ist\\|ower\\)\\|pprint\\|r\\(?:andom\\|e\\(?:\\(?:plac\\|vers\\)e\\)\\|ound\\)\\|s\\(?:afe\\|lice\\|ort\\|tri\\(?:ng\\|ptags\\)\\|um\\)\\|t\\(?:itle\\|r\\(?:im\\|uncate\\)\\)\\|u\\(?:pper\\|rlize\\)\\|word\\(?:count\\|wrap\\)\\|xmlattr\\)\\>" . font-lock-function-name-face)
+   '("{# *\\(\n?.*?\\)+ *#}" . font-lock-comment-face)
+   '("{{ *\\(.*?\\)\\(| ?.*?\\)* *}}" . (1 font-lock-variable-name-face))
+
+   '("{{ *.*?\\(\\(| ?\\(a\\(?:bs\\|ttr\\)\\|batch\\|c\\(?:apitalize\\|enter\\)\\|d\\(?:\\(?:efaul\\|ictsor\\)t\\)\\|escape\\|f\\(?:i\\(?:\\(?:lesizeforma\\|rs\\)t\\)\\|loat\\|or\\(?:ceescape\\|mat\\)\\)\\|groupby\\|in\\(?:\\(?:den\\)?t\\)\\|join\\|l\\(?:ast\\|ength\\|ist\\|ower\\)\\|pprint\\|r\\(?:andom\\|e\\(?:\\(?:plac\\|vers\\)e\\)\\|ound\\)\\|s\\(?:afe\\|lice\\|ort\\|tri\\(?:ng\\|ptags\\)\\|um\\)\\|t\\(?:itle\\|r\\(?:im\\|uncate\\)\\)\\|u\\(?:pper\\|rlize\\)\\|word\\(?:count\\|wrap\\)\\|xmlattr\\) *\\)*?\\) *}}" . (1 font-lock-function-name-face))
+
    '("\\<\\(False\\|None\\|True\\|a\\(?:s\\|utoescape\\)\\|break\\|c\\(?:aller\\|ont\\(?:ext\\|inue\\)\\)\\|d\\(?:ebug\\|o\\)\\|e\\(?:lif\\|xtends\\)\\|f\\(?:alse\\|irstof\\|rom\\)\\|i\\(?:gnore\\|mport\\|nclude\\|[ns]\\)\\|kwargs\\|lo\\(?:ad\\|op\\)\\|missing\\|no\\(?:ne\\|w\\)\\|pluralize\\|regroup\\|s\\(?:coped\\|et\\|si\\|uper\\)\\|t\\(?:emplatetag\\|rue\\)\\|url\\|varargs\\|wi\\(?:dthratio\\|th\\(?:out\\)?\\)\\)\\>" . font-lock-builtin-face)
    '("\\<\\(end\\)?\\(aut\\(?:h\\|oescape\\)\\|block\\|call\\|e\\(?:lse\\|rrorproof\\)\\|f\\(?:\\(?:ilte\\|o\\)r\\)\\|if\\|macro\\|raw\\|showonmatch\\|trans\\|with\\)\\>" . font-lock-keyword-face)
    '("{%\\|\\%}\\|{{\\|}}" . font-lock-builtin-face)))
