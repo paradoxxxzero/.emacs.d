@@ -27,6 +27,27 @@
 	   "|" (* whitespace) (*? anything))
 	  (* whitespace)
 	  "}}") (1 font-lock-variable-name-face))
+     (,(rx "{{"
+	  (* whitespace)
+	  (*? anything)
+	  (group
+	   (*?
+	    "|" (* whitespace)
+	    (or
+	     "abs" "attr" "batch" "capitalize"
+	     "center" "default" "dictsort"
+	     "escape" "filesizeformat" "first"
+	     "float" "forceescape" "format"
+	     "groupby" "indent" "int" "join"
+	     "last" "length" "list" "lower"
+	     "pprint" "random" "replace"
+	     "reverse" "round" "safe" "slice"
+	     "sort" "string" "striptags" "sum"
+	     "title" "trim" "truncate" "upper"
+	     "urlize" "wordcount" "wordwrap" "xmlattr"
+	     )))
+	  (* whitespace)
+	  "}}") (1 font-lock-function-name-face))
      (,(rx word-start
 	   (? "end")
 	   (or
@@ -36,38 +57,23 @@
 	    "auth" "showonmatch" "errorproof"
 	    )
 	   word-end) (0 font-lock-keyword-face))
-     (,(concat "{{ *.*?\\(\\(| ?"
-	       (regexp-opt '(
-			     "abs" "attr" "batch" "capitalize"
-			     "center" "default" "dictsort"
-			     "escape" "filesizeformat" "first"
-			     "float" "forceescape" "format"
-			     "groupby" "indent" "int" "join"
-			     "last" "length" "list" "lower"
-			     "pprint" "random" "replace"
-			     "reverse" "round" "safe" "slice"
-			     "sort" "string" "striptags" "sum"
-			     "title" "trim" "truncate" "upper"
-			     "urlize" "wordcount" "wordwrap" "xmlattr"
-			     ) t)
-	       " *\\)*?\\) *}}") (1 font-lock-function-name-face))
-     (,(concat "\\<"
-	       (regexp-opt '(
-			     "as" "autoescape" "debug" "extends"
-			     "firstof" "in" "include" "load"
-			     "now" "regroup" "ssi" "templatetag"
-			     "url" "widthratio" "elif" "true"
-			     "false" "none" "False" "True" "None"
-			     "loop" "super" "caller" "varargs"
-			     "kwargs" "break" "continue" "is"
-			     "do" "pluralize" "set" "from" "import"
-			     "context" "with" "without" "ignore"
-			     "missing" "scoped"
-			     ) t)
-	       "\\>") (0 font-lock-builtin-face))
-     ("{%\\|%}" (0 font-lock-function-name-face))
-     ("{{\\|}}" (0 font-lock-type-face))
-     ("{#\\|#}" (0 font-lock-comment-delimiter-face))
+     (,(rx word-start
+	   (or
+	    "as" "autoescape" "debug" "extends"
+	    "firstof" "in" "include" "load"
+	    "now" "regroup" "ssi" "templatetag"
+	    "url" "widthratio" "elif" "true"
+	    "false" "none" "False" "True" "None"
+	    "loop" "super" "caller" "varargs"
+	    "kwargs" "break" "continue" "is"
+	    "do" "pluralize" "set" "from" "import"
+	    "context" "with" "without" "ignore"
+	    "missing" "scoped"
+	    )
+	   word-end) (0 font-lock-builtin-face))
+     (,(rx (or "{%" "%}")) (0 font-lock-function-name-face))
+     (,(rx (or "{{" "}}")) (0 font-lock-type-face))
+     (,(rx (or "{#" "#}")) (0 font-lock-comment-delimiter-face))
     ))
 
 (defvar jinja2-mode-syntax-table
