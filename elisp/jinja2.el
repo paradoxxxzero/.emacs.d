@@ -11,16 +11,31 @@
 (defvar jinja2-font-lock-keywords nil)
 (setq jinja2-font-lock-keywords
    `(
-     ("{# *\\(\\(\\(\n\\|.\\)*?\\)+\\) *#}" (1 font-lock-comment-face))
-     ("{{ *\\(.*?\\)\\(| ?.*?\\)* *}}" (1 font-lock-variable-name-face))
-     (,(concat "\\<\\(end\\)?"
-	       (regexp-opt '(
-			     "if" "else" "for" "block" "filter" "with"
-			     "raw" "macro" "autoescape" "trans" "call"
-			     ;; Hydra specific
-			     "auth" "showonmatch" "errorproof"
-			     ) t)
-	       "\\>") (0 font-lock-keyword-face))
+     (,(rx "{#"
+	  (* whitespace)
+	  (group
+	   (*? anything)
+	   )
+	  (* whitespace)
+	  "#}") (1 font-lock-comment-face))
+     (,(rx "{{"
+	  (* whitespace)
+	  (group
+	   (*? anything)
+	   )
+	  (*
+	   "|" (* whitespace) (*? anything))
+	  (* whitespace)
+	  "}}") (1 font-lock-variable-name-face))
+     (,(rx word-start
+	   (? "end")
+	   (or
+	    "if" "else" "for" "block" "filter" "with"
+	    "raw" "macro" "autoescape" "trans" "call"
+	    ;; Hydra specific
+	    "auth" "showonmatch" "errorproof"
+	    )
+	   word-end) (0 font-lock-keyword-face))
      (,(concat "{{ *.*?\\(\\(| ?"
 	       (regexp-opt '(
 			     "abs" "attr" "batch" "capitalize"
