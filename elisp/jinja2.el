@@ -1,3 +1,5 @@
+(require 'sgml-mode)
+
 (defvar jinja2-mode-hook nil)
 
 (defvar jinja2-mode-map
@@ -11,13 +13,6 @@
 (defvar jinja2-font-lock-keywords nil)
 (setq jinja2-font-lock-keywords
    `(
-     (,(rx "{#"
-	  (* whitespace)
-	  (group
-	   (*? anything)
-	   )
-	  (* whitespace)
-	  "#}") (1 font-lock-comment-face))
      (,(rx "{{"
 	  (* whitespace)
 	  (group
@@ -26,14 +21,23 @@
 	  (*
 	   "|" (* whitespace) (*? anything))
 	  (* whitespace)
-	  "}}") (1 font-lock-variable-name-face))
+	  "}}") (1 font-lock-variable-name-face t))
      (,(rx "{{"
 	  (* whitespace)
 	  (*? anything)
 	  (group
 	   (*?
 	    "|" (* whitespace)
-	    (or
+	    (*? anything)
+	    ))
+	  (* whitespace)
+	  "}}") (1 font-lock-warning-face t))
+     (,(rx "{{"
+	  (* whitespace)
+	  (*? anything)
+	   (+?
+	    (group "|" (* whitespace))
+	    (group (or
 	     "abs" "attr" "batch" "capitalize"
 	     "center" "default" "dictsort"
 	     "escape" "filesizeformat" "first"
@@ -45,9 +49,12 @@
 	     "sort" "string" "striptags" "sum"
 	     "title" "trim" "truncate" "upper"
 	     "urlize" "wordcount" "wordwrap" "xmlattr"
-	     )))
+	     ))
+	    )
 	  (* whitespace)
-	  "}}") (1 font-lock-function-name-face))
+	  "}}")
+      (1 font-lock-keyword-face t)
+      (2 font-lock-function-name-face t))
      (,(rx word-start
 	   (? "end")
 	   (or
@@ -71,9 +78,16 @@
 	    "missing" "scoped"
 	    )
 	   word-end) (0 font-lock-builtin-face))
-     (,(rx (or "{%" "%}")) (0 font-lock-function-name-face))
-     (,(rx (or "{{" "}}")) (0 font-lock-type-face))
-     (,(rx (or "{#" "#}")) (0 font-lock-comment-delimiter-face))
+     (,(rx (or "{%" "%}")) (0 font-lock-function-name-face t))
+     (,(rx (or "{{" "}}")) (0 font-lock-type-face t))
+     (,(rx "{#"
+	   (* whitespace)
+	   (group
+	    (*? anything)
+	    )
+	   (* whitespace)
+	   "#}") (1 font-lock-comment-face t))
+     (,(rx (or "{#" "#}")) (0 font-lock-comment-delimiter-face t))
     ))
 
 (defvar jinja2-mode-syntax-table
@@ -88,6 +102,9 @@
   (set-syntax-table jinja2-mode-syntax-table)
   (use-local-map jinja2-mode-map)
   (set (make-local-variable 'font-lock-defaults) '(jinja2-font-lock-keywords))
+  (set (make-local-variable 'comment-start) "{#")
+  (set (make-local-variable 'comment-end) "#}")
+  (set (make-local-variable 'font-lock-multiline) t)
   (setq major-mode 'jinja2-mode)
   (setq mode-name "Jinja2")
   (run-hooks 'jinja2-mode-hook))
