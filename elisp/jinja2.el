@@ -22,21 +22,12 @@
 	   "|" (* whitespace) (*? anything))
 	  (* whitespace)
 	  "}}") (1 font-lock-variable-name-face t))
-     (,(rx "{{"
-	  (* whitespace)
-	  (*? anything)
-	  (group
-	   (*?
-	    "|" (* whitespace)
-	    (*? anything)
-	    ))
-	  (* whitespace)
-	  "}}") (1 font-lock-warning-face t))
-     (,(rx "{{"
-	  (* whitespace)
-	  (*? anything)
-	   (+?
-	    (group "|" (* whitespace))
+     (,(rx  (group "|" (* whitespace))
+	    (group (+ word))
+	    )
+      (1 font-lock-keyword-face t)
+      (2 font-lock-warning-face t))
+     (,(rx  (group "|" (* whitespace))
 	    (group (or
 	     "abs" "attr" "batch" "capitalize"
 	     "center" "default" "dictsort"
@@ -51,10 +42,9 @@
 	     "urlize" "wordcount" "wordwrap" "xmlattr"
 	     ))
 	    )
-	  (* whitespace)
-	  "}}")
       (1 font-lock-keyword-face t)
-      (2 font-lock-function-name-face t))
+      (2 font-lock-function-name-face t)
+      )
      (,(rx word-start
 	   (? "end")
 	   (or
