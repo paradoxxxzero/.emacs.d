@@ -63,6 +63,11 @@
 	     "sort" "string" "striptags" "sum"
 	     "title" "trim" "truncate" "upper"
 	     "urlize" "wordcount" "wordwrap" "xmlattr"
+	     ;; Hydra specific
+	     "date_format" "money_format"
+	     "money_format_no_currency" "sublength"
+	     "json" "percent_format" "person_title"
+	     "mail_format" "sort_by" "split"
 	     ))
 	    )
       (1 font-lock-keyword-face t)
