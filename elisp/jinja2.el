@@ -10,8 +10,31 @@
 
 (add-to-list 'auto-mode-alist '("\\.jinja2\\'" . jinja2-mode))
 
-(defvar jinja2-font-lock-keywords nil)
-(setq jinja2-font-lock-keywords
+(defvar jinja2-font-lock-comments nil)
+(setq jinja2-font-lock-comments
+  `(
+    (,(rx "{#"
+	  (* whitespace)
+	  (group
+	   (*? anything)
+	   )
+	  (* whitespace)
+	  "#}")
+     . (1 font-lock-comment-face))))
+(defconst jinja2-font-lock-keywords-1
+  (append
+   jinja2-font-lock-comments
+   sgml-font-lock-keywords-1))
+
+(defconst jinja2-font-lock-keywords-2
+  (append
+   jinja2-font-lock-keywords-1
+   sgml-font-lock-keywords-2))
+
+(defconst jinja2-font-lock-keywords-3
+  (append
+   jinja2-font-lock-keywords-1
+   jinja2-font-lock-keywords-2
    `(
      (,(rx "{{"
 	  (* whitespace)
@@ -70,33 +93,31 @@
 	   word-end) (0 font-lock-builtin-face))
      (,(rx (or "{%" "%}")) (0 font-lock-function-name-face t))
      (,(rx (or "{{" "}}")) (0 font-lock-type-face t))
-     (,(rx "{#"
-	   (* whitespace)
-	   (group
-	    (*? anything)
-	    )
-	   (* whitespace)
-	   "#}") (1 font-lock-comment-face t))
      (,(rx (or "{#" "#}")) (0 font-lock-comment-delimiter-face t))
-    ))
+    )))
+
+(defvar jinja2-font-lock-keywords
+  jinja2-font-lock-keywords-1)
 
 (defvar jinja2-mode-syntax-table
   (let ((jinja2-mode-syntax-table (make-syntax-table)))
     jinja2-mode-syntax-table)
   "Syntax table for jinja2-mode")
 
-(defun jinja2-mode ()
-  "Major mode for editing Jinja2 templates"
-  (interactive)
-  (kill-all-local-variables)
-  (set-syntax-table jinja2-mode-syntax-table)
-  (use-local-map jinja2-mode-map)
-  (set (make-local-variable 'font-lock-defaults) '(jinja2-font-lock-keywords))
-  (set (make-local-variable 'comment-start) "{#")
-  (set (make-local-variable 'comment-end) "#}")
-  (set (make-local-variable 'font-lock-multiline) t)
-  (setq major-mode 'jinja2-mode)
-  (setq mode-name "Jinja2")
-  (run-hooks 'jinja2-mode-hook))
+
+;;;###autoload
+(define-derived-mode jinja2-mode html-mode  "jinja2"
+  "Major mode for editing jinja2 files"
+  :group 'jinja2
+  ;; it mainly from sgml-mode font lock setting
+  (set (make-local-variable 'font-lock-defaults)
+       '((
+	  jinja2-font-lock-keywords
+	  jinja2-font-lock-keywords-1
+	  jinja2-font-lock-keywords-2
+	  jinja2-font-lock-keywords-3)
+         nil t nil nil
+         (font-lock-syntactic-keywords
+          . sgml-font-lock-syntactic-keywords))))
 
 (provide 'jinja2-mode)
