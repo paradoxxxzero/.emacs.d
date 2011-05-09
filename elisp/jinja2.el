@@ -10,8 +10,7 @@
 
 (add-to-list 'auto-mode-alist '("\\.jinja2\\'" . jinja2-mode))
 
-(defvar jinja2-font-lock-comments nil)
-(setq jinja2-font-lock-comments
+(defconst  jinja2-font-lock-comments
   `(
     (,(rx "{#"
 	  (* whitespace)
@@ -21,6 +20,7 @@
 	  (* whitespace)
 	  "#}")
      . (1 font-lock-comment-face))))
+
 (defconst jinja2-font-lock-keywords-1
   (append
    jinja2-font-lock-comments
