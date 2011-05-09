@@ -104,6 +104,40 @@
     jinja2-mode-syntax-table)
   "Syntax table for jinja2-mode")
 
+(defun jinja2-indent-line ()
+  "Indent current line as WPDL code"
+  (interactive)
+  (beginning-of-line)
+  (if (bobp)  ; Check begining of buffer
+      (indent-line-to 0)
+    (let ((not-indented t) (indent-width 2) cur-indent)
+;; (save-excursion (sgml-calculate-indent))
+;;      (progn (message (format "%d" current-indentation))
+      (if (looking-at "^[ \t]*{% *end") ; Check close tag
+  	  (progn
+  	    (save-excursion
+  	      (forward-line -1)
+  	      (setq cur-indent (- (current-indentation) indent-width)))
+  	    (if (< cur-indent 0)
+  		(setq cur-indent 0)))
+  	(save-excursion
+          (while not-indented
+            (forward-line -1)
+            (if (looking-at "^[ \t]*{% *end") ; Don't indent after end
+                (progn
+                  (setq cur-indent (current-indentation))
+                  (setq not-indented nil))
+              (if (looking-at "^[ \t]*{% *") ; Check start tag
+                  (progn
+                    (setq cur-indent (+ (current-indentation) indent-width))
+                    (setq not-indented nil))
+                (if (bobp) ; We don't know
+                    (setq not-indented nil)))))))
+	     (if cur-indent
+          (indent-line-to cur-indent)
+        (indent-line-to 0))))) ; If we didn't see an indentation hint, then allow no indentation
+
+  ;; (indent-line-to (sgml-calculate-indent)))
 
 ;;;###autoload
 (define-derived-mode jinja2-mode html-mode  "jinja2"
@@ -118,6 +152,6 @@
 	  jinja2-font-lock-keywords-3)
          nil t nil nil
          (font-lock-syntactic-keywords
-          . sgml-font-lock-syntactic-keywords))))
-
+          . sgml-font-lock-syntactic-keywords)))
+  (set (make-local-variable 'indent-line-function) 'jinja2-indent-line))
 (provide 'jinja2-mode)
