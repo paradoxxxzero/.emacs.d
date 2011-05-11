@@ -153,7 +153,7 @@
     (let ((not-indented t) (indent-width 2) cur-indent (html-indentation (sgml-indent-line-num)))
 ;; (save-excursion (sgml-calculate-indent))
 ;;      (progn (message (format "%d" current-indentation))
-      (if (looking-at "^[ \t]*{% *e\\(nd\\|lse\\)") ; Check close tag
+      (if (looking-at "^[ \t]*\\({% *e\\(nd\\|lse\\)\\|</\\)") ; Check close tag
 	  (progn
 	    (save-excursion
 	      (forward-line -1)
@@ -171,7 +171,7 @@
 	    (if (looking-at "^[ \t]*{% *end") ; Don't indent after end
 		(progn
 		  (setq cur-indent (current-indentation))
-		  ;; (message (format "Same] jinja : %d sgml : %d" cur-indent html-indentation ))
+		  (message (format "Jinja] jinja : %d sgml : %d" cur-indent html-indentation ))
 		  ;; (setq cur-indent html-indentation)
 		  (setq not-indented nil))
 	      (if (looking-at (concat "^[ \t]*{% *" (regexp-opt jinja2-font-lock-indenting-keywords))) ; Check start tag
@@ -184,6 +184,7 @@
 		(if (looking-at "^[ \t]*<")
 		    (progn
 		      (setq cur-indent html-indentation)
+		      (message (format "SGML] jinja : %d sgml : %d" cur-indent html-indentation ))
 		      (setq not-indented nil))
 		  (if (bobp) ; We don't know
 		    (setq not-indented nil))))))))
