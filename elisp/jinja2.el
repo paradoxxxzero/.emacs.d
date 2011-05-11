@@ -151,37 +151,50 @@
   (if (bobp)  ; Check begining of buffer
       (indent-line-to (sgml-indent-line-num))
     (let ((not-indented t) (indent-width 2) cur-indent (html-indentation (sgml-indent-line-num)))
-      (if (looking-at "^[ \t]*\\({% *e\\(nd\\|lse\\)\\|</\\)") ; Check close tag
+      (if (looking-at "^[ \t]*{% *e\\(nd\\|lse\\)") ; Check close tag
 	  (progn
 	    (save-excursion
 	      (forward-line -1)
-	      (if (looking-at (concat "^[ \t]*{% *" (regexp-opt jinja2-font-lock-indenting-keywords)))
-		  (setq cur-indent (current-indentation))
-		(setq cur-indent (- (current-indentation) indent-width)))
-	      ;; (message (format "Jinja] jinja : %d sgml : %d" cur-indent html-indentation ))
+	      (if (looking-at (concat "^[ \t]*{% *.*?{% *end" (regexp-opt jinja2-font-lock-indenting-keywords)))
+		  (progn
+		    (setq cur-indent (current-indentation))
+		    (message (format "Jinja_No1] jinja : %d sgml : %d" cur-indent html-indentation )))
+		(if (looking-at (concat "^[ \t]*{% *" (regexp-opt jinja2-font-lock-indenting-keywords)))
+		    (setq cur-indent (current-indentation))
+		  (setq cur-indent (- (current-indentation) indent-width)))
+	      (message (format "Jinja_end1] jinja : %d sgml : %d" cur-indent html-indentation )))
 	      )
 	    (if (< cur-indent 0)
 		(setq cur-indent 0)))
-	(save-excursion
-	  (while not-indented
-	    (forward-line -1)
-	    (if (looking-at "^[ \t]*{% *end") ; Don't indent after end
-		(progn
-		  (setq cur-indent (current-indentation))
-		  ;; (message (format "Jinja] jinja : %d sgml : %d" cur-indent html-indentation ))
-		  (setq not-indented nil))
-	      (if (looking-at (concat "^[ \t]*{% *" (regexp-opt jinja2-font-lock-indenting-keywords))) ; Check start tag
+	(if (looking-at "^[ \t]*</") ; Assume sgml end block trust sgml
+	    (progn
+	      (setq cur-indent html-indentation)
+	      (message (format "SGML_?1] jinja : %d sgml : %d" cur-indent html-indentation )))
+	  (save-excursion
+	    (while not-indented
+	      (forward-line -1)
+	      (if (looking-at "^[ \t]*{% *end") ; Don't indent after end
 		  (progn
-		    (setq cur-indent (+ (current-indentation) indent-width))
-		    ;; (message (format "Jinja] jinja : %d sgml : %d" cur-indent html-indentation ))
+		    (setq cur-indent (current-indentation))
+		    (message (format "Jinja_end2] jinja : %d sgml : %d" cur-indent html-indentation ))
 		    (setq not-indented nil))
-		(if (looking-at "^[ \t]*<") ; Assume sgml block trust sgml
+		(if (looking-at (concat "^[ \t]*{% *.*?{% *end" (regexp-opt jinja2-font-lock-indenting-keywords)))
 		    (progn
-		      (setq cur-indent html-indentation)
-		      ;; (message (format "SGML] jinja : %d sgml : %d" cur-indent html-indentation ))
+		      (setq cur-indent (current-indentation))
+		      (message (format "Jinja_No] jinja : %d sgml : %d" cur-indent html-indentation ))
 		      (setq not-indented nil))
-		  (if (bobp) ; We don't know
-		      (setq not-indented nil))))))))
+		  (if (looking-at (concat "^[ \t]*{% *" (regexp-opt jinja2-font-lock-indenting-keywords))) ; Check start tag
+		      (progn
+			(setq cur-indent (+ (current-indentation) indent-width))
+			(message (format "Jinja_open] jinja : %d sgml : %d" cur-indent html-indentation ))
+			(setq not-indented nil))
+		    (if (looking-at "^[ \t]*<") ; Assume sgml block trust sgml
+			(progn
+			  (setq cur-indent html-indentation)
+			  (message (format "SGML_?] jinja : %d sgml : %d" cur-indent html-indentation ))
+			  (setq not-indented nil))
+		      (if (bobp) ; We don't know
+			  (setq not-indented nil))))))))))
       (if cur-indent
 	  (indent-line-to cur-indent)
 	(indent-line-to html-indentation))))) ; If we didn't see an indentation hint, then allow no indentation
