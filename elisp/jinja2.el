@@ -135,33 +135,37 @@
   (interactive)
   (beginning-of-line)
   (if (bobp)  ; Check begining of buffer
-      (indent-line-to 0)
-    (let ((not-indented t) (indent-width 2) cur-indent)
+      (indent-line-to (save-excursion (sgml-calculate-indent)))
+    (let ((not-indented t) (indent-width 2) cur-indent (html-indentation (save-excursion (sgml-calculate-indent))))
 ;; (save-excursion (sgml-calculate-indent))
 ;;      (progn (message (format "%d" current-indentation))
-      (if (looking-at "^[ \t]*{% *end") ; Check close tag
-  	  (progn
-  	    (save-excursion
-  	      (forward-line -1)
-  	      (setq cur-indent (- (current-indentation) indent-width)))
-  	    (if (< cur-indent 0)
-  		(setq cur-indent 0)))
-  	(save-excursion
-          (while not-indented
-            (forward-line -1)
-            (if (looking-at "^[ \t]*{% *end") ; Don't indent after end
-                (progn
-                  (setq cur-indent (current-indentation))
-                  (setq not-indented nil))
-              (if (looking-at (concat "^[ \t]*{% *" (regexp-opt jinja2-font-lock-indenting-keywords))) ; Check start tag
-                  (progn
-                    (setq cur-indent (+ (current-indentation) indent-width))
-                    (setq not-indented nil))
-                (if (bobp) ; We don't know
-                    (setq not-indented nil)))))))
-	     (if cur-indent
-          (indent-line-to cur-indent)
-        (indent-line-to 0))))) ; If we didn't see an indentation hint, then allow no indentation
+      (if (looking-at "^[ \t]*{% *e\\(nd\\|lse\\)") ; Check close tag
+	  (progn
+	    (save-excursion
+	      (forward-line -1)
+	      (setq cur-indent (- (current-indentation) indent-width)))
+	    (if (< cur-indent 0)
+		  (setq cur-indent 0)))
+	(save-excursion
+	  (while not-indented
+	    (forward-line -1)
+	    (if (looking-at "^[ \t]*{% *end") ; Don't indent after end
+		(progn
+		  (setq cur-indent (current-indentation))
+		  (setq not-indented nil))
+	      (if (looking-at (concat "^[ \t]*{% *" (regexp-opt jinja2-font-lock-indenting-keywords))) ; Check start tag
+		  (progn
+		    (setq cur-indent (+ (current-indentation) indent-width))
+		    (setq not-indented nil))
+		(if (bobp) ; We don't know
+		    (setq not-indented nil)))))))
+      (if cur-indent
+	  (progn (message (format "jinja : %d sgml : %d" cur-indent html-indentation ))
+		 (if (< cur-indent html-indentation)
+		     (setq cur-indent html-indentation))
+		 (indent-line-to cur-indent))
+        (progn (message (format "sgml : %d" html-indentation ))
+	  (indent-line-to html-indentation)))))) ; If we didn't see an indentation hint, then allow no indentation
 
   ;; (indent-line-to (sgml-calculate-indent)))
 
