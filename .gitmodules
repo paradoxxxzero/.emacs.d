@@ -1,0 +1,22 @@
+[submodule ".emacs.d/elisp/jinja2-mode"]
+	path = .emacs.d/elisp/jinja2-mode
+	url = git@github.com:paradoxxxzero/jinja2-mode.git
+[submodule ".emacs.d/elisp/emacs-for-python"]
+	path = .emacs.d/elisp/emacs-for-python
+	url = git@github.com:paradoxxxzero/emacs-for-python.git
+[submodule ".emacs.d/elisp/multi-web-mode"]
+	path = .emacs.d/elisp/multi-web-mode
+	url = git@github.com:paradoxxxzero/multi-web-mode.git
+[submodule ".emacs.d/elisp/highlight-parentheses"]
+	path = .emacs.d/elisp/highlight-parentheses
+	url = https://github.com/nschum/highlight-parentheses.el.git
+[submodule ".emacs.d/elisp/coffee-mode"]
+	path = .emacs.d/elisp/coffee-mode
+	url = git@github.com:paradoxxxzero/coffee-mode.git
+[submodule ".emacs.d/elisp/new-python-mode"]
+	path = .emacs.d/elisp/new-python-mode
+	url = git@github.com:paradoxxxzero/python.el.git
+[submodule ".emacs.d/elisp/rfringe"]
+	path = .emacs.d/elisp/rfringe
+	url = git@github.com:paradoxxxzero/rfringe.git
+
