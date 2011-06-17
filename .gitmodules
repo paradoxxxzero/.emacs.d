@@ -19,4 +19,3 @@
 [submodule ".emacs.d/elisp/rfringe"]
 	path = .emacs.d/elisp/rfringe
 	url = git@github.com:paradoxxxzero/rfringe.git
-
