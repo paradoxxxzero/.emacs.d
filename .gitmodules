@@ -19,3 +19,6 @@
 [submodule ".emacs.d/elisp/rfringe"]
 	path = .emacs.d/elisp/rfringe
 	url = git@github.com:paradoxxxzero/rfringe.git
+[submodule ".emacs.d/elisp/js2-mode"]
+	path = .emacs.d/elisp/js2-mode
+	url = git://github.com/mooz/js2-mode.git
