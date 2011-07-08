@@ -40,6 +40,7 @@
 (global-set-key (kbd "S-M-SPC") 'set-mark-command)
 (global-set-key (kbd "C-$") 'comment-or-uncomment-region+)
 (global-set-key (kbd "C-.") 'backward-kill-line)
+
 ;; (global-set-key [C-tab] 'other-window)
 (global-set-key [C-S-tab]
                 (lambda ()
@@ -145,4 +146,11 @@
  '(secondary-selection ((t (:background "#090909"))))
  '(zmacs-region ((t (:background "#161616")))))
 
+(windmove-default-keybindings '(meta))
+(global-set-key [(meta shift left)] 'windmove-left)
+(global-set-key [(meta shift right)] 'windmove-right)
+(global-set-key [(meta shift up)] 'windmove-up)
+(global-set-key [(meta shift down)] 'windmove-down)
+
+(server-force-delete)
 (server-start)
