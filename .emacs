@@ -76,6 +76,8 @@
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
  '(initial-scratch-message nil)
+ '(ispell-dictionary "francais")
+ '(ispell-program-name "/usr/bin/aspell")
  '(kept-new-versions 6)
  '(kept-old-versions 2)
  '(menu-bar-mode nil)
