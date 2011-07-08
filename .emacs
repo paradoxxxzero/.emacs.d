@@ -5,6 +5,7 @@
 (load  "~/.emacs.d/elisp/new-python-mode/python.el")
 (load  "~/.emacs.d/elisp/ipython.el")
 (load  "~/.emacs.d/elisp/rfringe/rfringe.el")
+(load  "~/.emacs.d/elisp/js2-mode/js2-mode.el")
 
 (standard-display-ascii ?\t "↹    ")
 
@@ -126,6 +127,7 @@
  '(font-lock-warning-face ((t (:bold t :foreground "Pink"))))
  '(fringe ((t (:background "#222222"))))
  '(highlight ((t (:background "#101010"))))
+ '(highlight-indent-face ((t (:background "gray4"))))
  '(minibuffer-prompt ((t (:bold t :foreground "#ff6600"))))
  '(mode-line ((t (:foreground "#cccccc" :background "#222222" :box nil))))
  '(mode-line-buffer-id ((t (:foreground "#eeeeee" :background "#191919" :box nil))))
