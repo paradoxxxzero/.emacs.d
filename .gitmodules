@@ -3,7 +3,7 @@
 	url = git@github.com:paradoxxxzero/jinja2-mode.git
 [submodule ".emacs.d/elisp/emacs-for-python"]
 	path = .emacs.d/elisp/emacs-for-python
-	url = git@github.com:paradoxxxzero/emacs-for-python.git
+	url = git://github.com/gabrielelanaro/emacs-for-python.git
 [submodule ".emacs.d/elisp/multi-web-mode"]
 	path = .emacs.d/elisp/multi-web-mode
 	url = git@github.com:paradoxxxzero/multi-web-mode.git
