@@ -4,11 +4,18 @@
   (kill-line 0))
 
 (define-globalized-minor-mode real-global-highlight-parentheses-mode
- highlight-parentheses-mode (lambda ()
-                      (if (not (minibufferp (current-buffer)))
-			   (highlight-parentheses-mode 1))
-                      ))
+  highlight-parentheses-mode (lambda ()
+                               (if (not (minibufferp (current-buffer)))
+                                   (highlight-parentheses-mode 1))
+                               ))
 (real-global-highlight-parentheses-mode 1)
+
+(define-globalized-minor-mode real-global-fci-mode
+  fci-mode (lambda ()
+                               (if (not (minibufferp (current-buffer)))
+                                   (fci-mode 1))
+                               ))
+(real-global-fci-mode 1)
 
 (defun force-backup-of-buffer ()
   (let ((buffer-backed-up nil))
@@ -29,18 +36,18 @@ message in the minibuffer"
   (let ((line-no (line-number-at-pos)))
     (dolist (elem flymake-err-info)
       (if (eq (car elem) line-no)
-	  (let ((err (car (second elem))))
-	    (message "%s" (fly-pyflake-determine-message err)))))))
+          (let ((err (car (second elem))))
+            (message "%s" (fly-pyflake-determine-message err)))))))
 
 (defun fly-pyflake-determine-message (err)
   "pyflake is flakey if it has compile problems, this adjusts the
 message to display, so there is one ;)"
   (cond ((not (or (eq major-mode 'Python) (eq major-mode 'python-mode) t)))
-	((null (flymake-ler-file err))
-	 ;; normal message do your thing
-	 (flymake-ler-text err))
-	(t ;; could not compile err
-	 (format "compile error, problem on line %s" (flymake-ler-line err)))))
+        ((null (flymake-ler-file err))
+         ;; normal message do your thing
+         (flymake-ler-text err))
+        (t ;; could not compile err
+         (format "compile error, problem on line %s" (flymake-ler-line err)))))
 
 (defadvice flymake-goto-next-error (after display-message activate compile)
   "Display the error in the mini-buffer rather than having to mouse over it"
@@ -68,7 +75,7 @@ it)"
 ;; enable recent files mode.
 (recentf-mode t)
 
-; 50 files ought to be enough.
+                                        ; 50 files ought to be enough.
 (setq recentf-max-saved-items 50)
 
 (defun ido-recentf-open ()

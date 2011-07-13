@@ -6,6 +6,7 @@
 (load  "~/.emacs.d/elisp/ipython.el")
 (load  "~/.emacs.d/elisp/rfringe/rfringe.el")
 (load  "~/.emacs.d/elisp/js2-mode/js2-mode.el")
+(load  "~/.emacs.d/elisp/fill-column-indicator/fill-column-indicator.el")
 
 (standard-display-ascii ?\t "↹    ")
 
@@ -72,6 +73,8 @@
  '(column-number-mode t)
  '(css-indent-offset 2)
  '(delete-old-versions t)
+ '(fci-rule-color "#222222")
+ '(fci-rule-width 1)
  '(hl-paren-colors (quote ("orange1" "yellow1" "greenyellow" "green1" "springgreen1" "cyan1" "slateblue1" "magenta1" "purple" "orange1" "yellow1" "greenyellow" "green1" "springgreen1" "cyan1" "slateblue1" "magenta1" "purple")))
  '(home-end-enable t)
  '(indent-tabs-mode nil)
