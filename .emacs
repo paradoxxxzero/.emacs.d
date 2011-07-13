@@ -91,6 +91,7 @@
  '(show-trailing-whitespace t)
  '(tab-width 4)
  '(tool-bar-mode nil)
+ '(tramp-default-method "ssh")
  '(uniquify-buffer-name-style (quote post-forward-angle-brackets) nil (uniquify))
  '(vc-follow-symlinks t)
  '(vc-make-backup-files t)

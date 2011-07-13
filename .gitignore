@@ -5,3 +5,4 @@
 .emacs.d/backups/*
 .emacs.d/eproject.lst
 .emacs.d/session.*
+.emacs.d/tramp
