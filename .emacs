@@ -75,6 +75,7 @@
  '(delete-old-versions t)
  '(fci-rule-color "#222222")
  '(fci-rule-width 1)
+ '(fill-column 80)
  '(hl-paren-colors (quote ("orange1" "yellow1" "greenyellow" "green1" "springgreen1" "cyan1" "slateblue1" "magenta1" "purple" "orange1" "yellow1" "greenyellow" "green1" "springgreen1" "cyan1" "slateblue1" "magenta1" "purple")))
  '(home-end-enable t)
  '(indent-tabs-mode nil)
