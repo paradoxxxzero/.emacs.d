@@ -10,7 +10,7 @@
 
 (standard-display-ascii ?\t "↹    ")
 
-(epy-setup-checker "pycheckers %f")
+(epy-setup-checker "~/.emacs.d/pycheckers %f")
 
 (setq jinja2-user-keywords
   '(
@@ -54,6 +54,8 @@
 (global-set-key [M-down] 'move-text-down)
 (global-set-key [C-up] 'duplicate-line-or-region-above)
 (global-set-key [C-down] 'duplicate-line-or-region-below)
+(global-set-key [C-S-up] 'backward-paragraph)
+(global-set-key [C-S-down] 'forward-paragraph)
 (global-set-key [M-S-up] 'backward-paragraph)
 (global-set-key [M-S-down] 'forward-paragraph)
 
