@@ -36,13 +36,15 @@
 (multi-web-global-mode 1)
 
 ;; Keys
+(global-set-key (kbd "M-DEL") 'kill-word)
+(global-set-key (kbd "<M-backspace>") 'backward-kill-word)
 (global-set-key (kbd "M-SPC") 'dabbrev-expand)
 (global-set-key (kbd "M-RET") 'flymake-display-err-menu-for-current-line)
 (global-set-key (kbd "S-M-SPC") 'set-mark-command)
 (global-set-key (kbd "C-$") 'comment-or-uncomment-region+)
 (global-set-key (kbd "C-.") 'backward-kill-line)
 
-;; (global-set-key [C-tab] 'other-window)
+(global-set-key [C-tab] 'other-window)
 (global-set-key [C-S-tab]
                 (lambda ()
                   (interactive)
@@ -78,6 +80,7 @@
  '(fci-rule-color "#222222")
  '(fci-rule-width 1)
  '(fill-column 80)
+ '(flymake-no-changes-timeout 0)
  '(hl-paren-colors (quote ("orange1" "yellow1" "greenyellow" "green1" "springgreen1" "cyan1" "slateblue1" "magenta1" "purple" "orange1" "yellow1" "greenyellow" "green1" "springgreen1" "cyan1" "slateblue1" "magenta1" "purple")))
  '(home-end-enable t)
  '(indent-tabs-mode nil)
