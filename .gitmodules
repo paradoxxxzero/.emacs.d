@@ -6,22 +6,22 @@
 	url = git://github.com/gabrielelanaro/emacs-for-python.git
 [submodule ".emacs.d/elisp/multi-web-mode"]
 	path = .emacs.d/elisp/multi-web-mode
-	url = git@github.com:paradoxxxzero/multi-web-mode.git
+	url = git://github.com/fgallina/multi-web-mode.git
 [submodule ".emacs.d/elisp/highlight-parentheses"]
 	path = .emacs.d/elisp/highlight-parentheses
-	url = https://github.com/nschum/highlight-parentheses.el.git
+	url = git://github.com/nschum/highlight-parentheses.el.git
 [submodule ".emacs.d/elisp/coffee-mode"]
 	path = .emacs.d/elisp/coffee-mode
-	url = git@github.com:paradoxxxzero/coffee-mode.git
+	url = git://github.com/defunkt/coffee-mode.git
 [submodule ".emacs.d/elisp/new-python-mode"]
 	path = .emacs.d/elisp/new-python-mode
-	url = git@github.com:paradoxxxzero/python.el.git
+	url = git://github.com/paradoxxxzero/python.el.git
 [submodule ".emacs.d/elisp/rfringe"]
 	path = .emacs.d/elisp/rfringe
-	url = git@github.com:paradoxxxzero/rfringe.git
+	url = git://github.com/emacsmirror/rfringe.git
 [submodule ".emacs.d/elisp/js2-mode"]
 	path = .emacs.d/elisp/js2-mode
 	url = git://github.com/mooz/js2-mode.git
 [submodule ".emacs.d/elisp/fill-column-indicator"]
 	path = .emacs.d/elisp/fill-column-indicator
-	url = git@github.com:paradoxxxzero/Fill-Column-Indicator.git
+	url = git://github.com/alpaker/Fill-Column-Indicator.git

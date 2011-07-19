@@ -3,7 +3,6 @@
 (load  "~/.emacs.d/elisp/highlight-parentheses/highlight-parentheses.el")
 (load  "~/.emacs.d/elisp/emacs-for-python/epy-init.el")
 (load  "~/.emacs.d/elisp/new-python-mode/python.el")
-(load  "~/.emacs.d/elisp/ipython.el")
 (load  "~/.emacs.d/elisp/rfringe/rfringe.el")
 (load  "~/.emacs.d/elisp/js2-mode/js2-mode.el")
 (load  "~/.emacs.d/elisp/fill-column-indicator/fill-column-indicator.el")
