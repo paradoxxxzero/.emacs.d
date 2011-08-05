@@ -2,7 +2,6 @@
 (load  "~/.emacs.d/elisp/coffee-mode/coffee-mode.el")
 (load  "~/.emacs.d/elisp/highlight-parentheses/highlight-parentheses.el")
 (load  "~/.emacs.d/elisp/emacs-for-python/epy-init.el")
-(load  "~/.emacs.d/elisp/new-python-mode/python.el")
 (load  "~/.emacs.d/elisp/rfringe/rfringe.el")
 (load  "~/.emacs.d/elisp/js2-mode/js2-mode.el")
 (load  "~/.emacs.d/elisp/fill-column-indicator/fill-column-indicator.el")
@@ -51,8 +50,6 @@
 
 (define-key ac-mode-map (kbd "C-SPC") 'auto-complete)
 
-(global-set-key [M-up] 'move-text-up)
-(global-set-key [M-down] 'move-text-down)
 (global-set-key [C-up] 'duplicate-line-or-region-above)
 (global-set-key [C-down] 'duplicate-line-or-region-below)
 (global-set-key [C-S-up] 'backward-paragraph)
@@ -163,3 +160,4 @@
 
 (server-force-delete)
 (server-start)
+(put 'narrow-to-region 'disabled nil)
