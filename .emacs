@@ -2,13 +2,16 @@
 (load  "~/.emacs.d/elisp/coffee-mode/coffee-mode.el")
 (load  "~/.emacs.d/elisp/highlight-parentheses/highlight-parentheses.el")
 (load  "~/.emacs.d/elisp/emacs-for-python/epy-init.el")
-(load  "~/.emacs.d/elisp/rfringe/rfringe.el")
+;; (load  "~/.emacs.d/elisp/rfringe/rfringe.el")
 (load  "~/.emacs.d/elisp/js2-mode/js2-mode.el")
 (load  "~/.emacs.d/elisp/fill-column-indicator/fill-column-indicator.el")
 
 (standard-display-ascii ?\t "↹    ")
 
 (epy-setup-checker "~/.emacs.d/pycheckers %f")
+
+;; Disabling pairing
+(setq skeleton-pair nil)
 
 (setq jinja2-user-keywords
   '(
@@ -27,7 +30,6 @@
 
 (setq mweb-default-major-mode 'jinja2-mode)
 (setq mweb-tags '(
-                  ;; (php-mode "<\\?php\\|<\\? \\|<\\?=" "\\?>")
                   (js2-mode "<script +\\(type=\"text/javascript\"\\|language=\"javascript\"\\)[^>]*>" "</script>")
                   (css-mode "<style +type=\"text/css\"[^>]*>" "</style>")))
 (setq mweb-filename-extensions ' ("html" "htm" "ctp" "phtml" "php" "php4" "php5", "jinja2"))
