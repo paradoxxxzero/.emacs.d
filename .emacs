@@ -48,8 +48,6 @@
                   (interactive)
                   (other-window -1)))
 
-(define-key ac-mode-map (kbd "C-SPC") 'auto-complete)
-
 (global-set-key [C-up] 'duplicate-line-or-region-above)
 (global-set-key [C-down] 'duplicate-line-or-region-below)
 (global-set-key [C-S-up] 'backward-paragraph)
