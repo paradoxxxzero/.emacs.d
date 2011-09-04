@@ -22,3 +22,6 @@
 [submodule ".emacs.d/elisp/fill-column-indicator"]
 	path = .emacs.d/elisp/fill-column-indicator
 	url = git://github.com/alpaker/Fill-Column-Indicator.git
+[submodule ".emacs.d/elisp/lua-mode"]
+	path = .emacs.d/elisp/lua-mode
+	url = git://github.com/immerrr/lua-mode.git
