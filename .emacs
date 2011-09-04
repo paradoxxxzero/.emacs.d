@@ -2,7 +2,7 @@
 (load  "~/.emacs.d/elisp/coffee-mode/coffee-mode.el")
 (load  "~/.emacs.d/elisp/highlight-parentheses/highlight-parentheses.el")
 (load  "~/.emacs.d/elisp/emacs-for-python/epy-init.el")
-;; (load  "~/.emacs.d/elisp/rfringe/rfringe.el")
+(load  "~/.emacs.d/elisp/lua-mode/lua-mode.el")
 (load  "~/.emacs.d/elisp/js2-mode/js2-mode.el")
 (load  "~/.emacs.d/elisp/fill-column-indicator/fill-column-indicator.el")
 
