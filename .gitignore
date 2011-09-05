@@ -7,4 +7,6 @@
 .emacs.d/session.*
 .emacs.d/tramp
 .emacs.d/%backup%~
+.emacs.d/abbrev_defs
+.emacs.d/eshell/
 
