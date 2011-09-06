@@ -1,64 +1,4 @@
-(load  "~/.emacs.d/elisp/basic-edit-toolkit.el")
-(load  "~/.emacs.d/elisp/coffee-mode/coffee-mode.el")
-(load  "~/.emacs.d/elisp/highlight-parentheses/highlight-parentheses.el")
-(load  "~/.emacs.d/elisp/emacs-for-python/epy-init.el")
-(load  "~/.emacs.d/elisp/lua-mode/lua-mode.el")
-(load  "~/.emacs.d/elisp/js2-mode/js2-mode.el")
-(load  "~/.emacs.d/elisp/fill-column-indicator/fill-column-indicator.el")
-
-(standard-display-ascii ?\t "↹    ")
-
-(epy-setup-checker "~/.emacs.d/pycheckers %f")
-
-;; Disabling pairing
-(setq skeleton-pair nil)
-
-(setq jinja2-user-keywords
-  '(
-    "auth" "showonmatch" "errorproof"))
-
-(setq jinja2-user-functions
-  '(
-    "date_format" "money_format"
-    "money_format_no_currency" "sublength"
-    "json" "percent_format" "person_title"
-    "mail_format" "sort_by" "split"))
-
-(load  "~/.emacs.d/elisp/zero-tools.el")
-(load  "~/.emacs.d/elisp/jinja2-mode/jinja2.el")
-(load  "~/.emacs.d/elisp/multi-web-mode/multi-web-mode.el")
-
-(setq mweb-default-major-mode 'jinja2-mode)
-(setq mweb-tags '(
-                  (js2-mode "<script +\\(type=\"text/javascript\"\\|language=\"javascript\"\\)[^>]*>" "</script>")
-                  (css-mode "<style +type=\"text/css\"[^>]*>" "</style>")))
-(setq mweb-filename-extensions ' ("html" "htm" "ctp" "phtml" "php" "php4" "php5", "jinja2"))
-(multi-web-global-mode 1)
-
-;; Keys
-(global-set-key (kbd "M-DEL") 'kill-word)
-(global-set-key (kbd "<M-backspace>") 'backward-kill-word)
-(global-set-key (kbd "M-SPC") 'dabbrev-expand)
-(global-set-key (kbd "M-RET") 'flymake-display-err-menu-for-current-line)
-(global-set-key (kbd "S-M-SPC") 'set-mark-command)
-(global-set-key (kbd "C-$") 'comment-or-uncomment-region+)
-(global-set-key (kbd "C-.") 'backward-kill-line)
-
-(global-set-key [C-tab] 'other-window)
-(global-set-key [C-S-tab]
-                (lambda ()
-                  (interactive)
-                  (other-window -1)))
-
-(global-set-key [C-up] 'duplicate-line-or-region-above)
-(global-set-key [C-down] 'duplicate-line-or-region-below)
-(global-set-key [C-S-up] 'backward-paragraph)
-(global-set-key [C-S-down] 'forward-paragraph)
-(global-set-key [M-S-up] 'backward-paragraph)
-(global-set-key [M-S-down] 'forward-paragraph)
-
-(set-frame-parameter (selected-frame) 'alpha '(85 70))
-(add-to-list 'default-frame-alist '(alpha 85 70))
+(load "~/.emacs.d/elisp/_init.el")
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -121,7 +61,7 @@
  '(diff-file-header ((t (:foreground "DarkSlateGray3" :weight bold))))
  '(diff-header ((t (:foreground "DarkSlateGray1"))))
  '(flymake-errline ((t (:underline "red" :weight bold))))
- '(flymake-infoline ((t (:underline "forest green"))))
+ '(flymake-infoline ((t (:underline "blue"))))
  '(flymake-warnline ((t (:underline "goldenrod"))))
  '(font-lock-builtin-face ((t (:foreground "SpringGreen2"))))
  '(font-lock-comment-delimiter-face ((t (:foreground "magenta"))))
@@ -139,6 +79,7 @@
  '(fringe ((t (:background "#222222"))))
  '(highlight ((t (:background "#101010"))))
  '(highlight-indent-face ((t (:background "gray4"))))
+ '(hl-line ((t (:background "gray7"))))
  '(minibuffer-prompt ((t (:bold t :foreground "#ff6600"))))
  '(mode-line ((t (:foreground "#cccccc" :background "#222222" :box nil))))
  '(mode-line-buffer-id ((t (:foreground "#eeeeee" :background "#191919" :box nil))))
@@ -154,13 +95,3 @@
  '(rst-level-3-face ((t (:foreground "DarkOrchid2"))) t)
  '(secondary-selection ((t (:background "#090909"))))
  '(zmacs-region ((t (:background "#161616")))))
-
-(windmove-default-keybindings '(meta))
-(global-set-key [(meta shift left)] 'windmove-left)
-(global-set-key [(meta shift right)] 'windmove-right)
-(global-set-key [(meta shift up)] 'windmove-up)
-(global-set-key [(meta shift down)] 'windmove-down)
-
-(server-force-delete)
-(server-start)
-(put 'narrow-to-region 'disabled nil)
