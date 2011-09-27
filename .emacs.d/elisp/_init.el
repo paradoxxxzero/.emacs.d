@@ -1,8 +1,6 @@
 (load  "~/.emacs.d/elisp/basic-edit-toolkit.el")
 (load  "~/.emacs.d/elisp/highlight-parentheses/highlight-parentheses.el")
-(load  "~/.emacs.d/elisp/fill-column-indicator/fill-column-indicator.el")
 (load  "~/.emacs.d/elisp/zero-tools.el")
-;; (load  "~/.emacs.d/elisp/emacs-for-python/epy-init.el")
 
 ;; Autoloads
 (add-to-list 'load-path "~/.emacs.d/elisp/lua-mode/")
@@ -29,6 +27,18 @@
 (add-to-list 'auto-mode-alist '("\\.pxd\\'" . cython-mode))
 (add-to-list 'auto-mode-alist '("\\.pxi\\'" . cython-mode))
 
+;; Hippie expand
+(setq hippie-expand-try-functions-list
+      '(try-expand-dabbrev
+        try-expand-dabbrev-all-buffers
+        try-expand-dabbrev-from-kill
+        try-complete-file-name-partially
+        try-complete-file-name
+        try-expand-all-abbrevs
+        try-expand-list
+        try-expand-line
+        try-complete-lisp-symbol-partially
+        try-complete-lisp-symbol))
 
 ;; Ido
 (autoload 'ido-everywhere "ido")
@@ -37,6 +47,10 @@
 
 (setq ido-enable-flex-matching t) ;; enable fuzzy matching
 
+;; eproject
+(add-to-list 'load-path "~/.emacs.d/elisp/emacs-for-python/extensions/eproject")
+(autoload 'eproject "eproject" nil t)
+(require 'eproject)
 
 ;; Flymake
 (when (load-file "~/.emacs.d/elisp/emacs-for-python/extensions/flymake-patch.el")
@@ -63,7 +77,8 @@
 ;; Keys
 (global-set-key (kbd "M-DEL") 'kill-word)
 (global-set-key (kbd "<M-backspace>") 'backward-kill-word)
-(global-set-key (kbd "M-SPC") 'dabbrev-expand)
+(global-set-key (kbd "s-SPC") 'dabbrev-expand)
+(global-set-key (kbd "M-SPC") 'hippie-expand)
 (global-set-key (kbd "M-RET") 'flymake-display-err-menu-for-current-line)
 (global-set-key [f10] 'flymake-goto-prev-error)
 (global-set-key [f11] 'flymake-goto-next-error)
@@ -80,14 +95,19 @@
 
 (global-set-key [C-up] 'duplicate-line-or-region-above)
 (global-set-key [C-down] 'duplicate-line-or-region-below)
+(global-set-key [s-up] 'backward-to-indentation)
+(global-set-key [s-down] 'forward-to-indentation)
 (global-set-key [M-up] 'move-text-up)
 (global-set-key [M-down] 'move-text-down)
+(global-set-key [M-left] 'backward-word)
+(global-set-key [M-right] 'forward-word)
 (global-set-key [C-S-up] 'backward-paragraph)
 (global-set-key [C-S-down] 'forward-paragraph)
 (global-set-key [M-S-up] 'backward-paragraph)
 (global-set-key [M-S-down] 'forward-paragraph)
+
 (windmove-default-keybindings '(meta))
-(global-set-key [(meta shift left)] 'windmove-left)
-(global-set-key [(meta shift right)] 'windmove-right)
-(global-set-key [(meta shift up)] 'windmove-up)
-(global-set-key [(meta shift down)] 'windmove-down)
+(global-set-key [(meta super left)] 'windmove-left)
+(global-set-key [(meta super right)] 'windmove-right)
+(global-set-key [(meta super up)] 'windmove-up)
+(global-set-key [(meta super down)] 'windmove-down)

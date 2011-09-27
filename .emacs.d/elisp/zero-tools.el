@@ -45,13 +45,6 @@
                                ))
 (real-global-highlight-parentheses-mode 1)
 
-(define-globalized-minor-mode real-global-fci-mode
-  fci-mode (lambda ()
-                               (if (not (minibufferp (current-buffer)))
-                                   (fci-mode 1))
-                               ))
-(real-global-fci-mode 1)
-
 (defun force-backup-of-buffer ()
   (let ((buffer-backed-up nil))
     (backup-buffer)))
@@ -64,7 +57,7 @@
 (defun ido-recentf-open ()
   "Use `ido-completing-read' to \\[find-file] a recent file"
   (interactive)
-  (progn 
+  (progn
     (recentf-mode t)
     (if (find-file (ido-completing-read "Find recent file: " recentf-list))
         (message "Opening file...")
@@ -77,4 +70,4 @@
 
 (set-frame-parameter (selected-frame) 'alpha '(85 70))
 (add-to-list 'default-frame-alist '(alpha 85 70))
-(toggle-fullscreen)
+
