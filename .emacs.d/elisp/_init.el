@@ -19,6 +19,9 @@
 (autoload 'jinja2-mode "jinja2" nil t)
 (add-to-list 'auto-mode-alist '("\\.jinja2$" . jinja2-mode))
 
+(add-to-list 'load-path "~/.emacs.d/elisp/minimap/")
+(require 'minimap)
+
 (add-to-list 'load-path "~/.emacs.d/elisp/emacs-for-python/extensions/")
 (autoload 'python-mode "python" nil t)
 (autoload 'cython-mode "cython-mode" nil t)
@@ -46,6 +49,8 @@
 (ido-mode 1)
 
 (setq ido-enable-flex-matching t) ;; enable fuzzy matching
+
+
 
 ;; eproject
 (add-to-list 'load-path "~/.emacs.d/elisp/emacs-for-python/extensions/eproject")
