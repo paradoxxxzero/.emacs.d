@@ -25,3 +25,6 @@
 [submodule ".emacs.d/elisp/lua-mode"]
 	path = .emacs.d/elisp/lua-mode
 	url = git://github.com/immerrr/lua-mode.git
+[submodule ".emacs.d/elisp/minimap"]
+	path = .emacs.d/elisp/minimap
+	url = git://randomsample.de/minimap.git
