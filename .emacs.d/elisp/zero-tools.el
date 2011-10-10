@@ -68,6 +68,6 @@
   (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
                          '(2 "_NET_WM_STATE_FULLSCREEN" 0)))
 
-(set-frame-parameter (selected-frame) 'alpha '(85 70))
-(add-to-list 'default-frame-alist '(alpha 85 70))
+(set-frame-parameter (selected-frame) 'alpha '(80 50))
+(add-to-list 'default-frame-alist '(alpha 80 50))
 

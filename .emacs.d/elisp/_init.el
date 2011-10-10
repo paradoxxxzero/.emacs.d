@@ -47,11 +47,14 @@
 
 (setq ido-enable-flex-matching t) ;; enable fuzzy matching
 
+<<<<<<< master
 ;; eproject
 (add-to-list 'load-path "~/.emacs.d/elisp/emacs-for-python/extensions/eproject")
 (autoload 'eproject "eproject" nil t)
 (require 'eproject)
 
+=======
+>>>>>>> local
 ;; Flymake
 (when (load-file "~/.emacs.d/elisp/emacs-for-python/extensions/flymake-patch.el")
   (setq flymake-info-line-regex
