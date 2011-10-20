@@ -6,10 +6,10 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ansi-color-names-vector ["#212526" "#ff4b4b" "#b4fa70" "#fce94f" "#729fcf" "#ad7fa8" "#8cc4ff" "#eeeeec"])
- '(auto-save-file-name-transforms (quote ((".*" "~/.emacs.d/autosave/" t))))
+ '(auto-save-file-name-transforms '((".*" "~/.emacs.d/autosaves/\\1" t)))
  '(backup-by-copying t)
  '(backup-by-copying-when-linked t)
- '(backup-directory-alist (quote ((".*" . "~/.emacs.d/backups"))))
+ '(backup-directory-alist '((".*" . "~/.emacs.d/backups/")))
  '(column-number-mode t)
  '(css-indent-offset 2)
  '(delete-old-versions t)
@@ -107,3 +107,4 @@
  '(rst-level-3-face ((t (:foreground "DarkOrchid2"))) t)
  '(secondary-selection ((t (:background "#090909"))))
  '(zmacs-region ((t (:background "#161616")))))
+(put 'scroll-left 'disabled nil)

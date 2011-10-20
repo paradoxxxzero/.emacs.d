@@ -28,3 +28,6 @@
 [submodule ".emacs.d/elisp/minimap"]
 	path = .emacs.d/elisp/minimap
 	url = git://randomsample.de/minimap.git
+[submodule ".emacs.d/elisp/sqlindent"]
+	path = .emacs.d/elisp/sqlindent
+	url = git://github.com/emacsmirror/sql-indent.git
