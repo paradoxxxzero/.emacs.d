@@ -31,3 +31,9 @@
 [submodule ".emacs.d/elisp/sqlindent"]
 	path = .emacs.d/elisp/sqlindent
 	url = git://github.com/emacsmirror/sql-indent.git
+[submodule ".emacs.d/elisp/mingus"]
+	path = .emacs.d/elisp/mingus
+	url = git://github.com/pft/mingus.git
+[submodule ".emacs.d/elisp/yaml-mode"]
+	path = .emacs.d/elisp/yaml-mode
+	url = git://github.com/yoshiki/yaml-mode.git

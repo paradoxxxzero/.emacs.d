@@ -2,6 +2,9 @@
 (load  "~/.emacs.d/elisp/highlight-parentheses/highlight-parentheses.el")
 (load  "~/.emacs.d/elisp/zero-tools.el")
 
+(require 'jabber-autoloads)
+(setq jabber-account-list '(("fmounier@jabber.kozea.fr" (:network-server . "jabber.keleos.fr"))))
+
 ;; Mode config
 (setq jinja2-user-keywords
   '(
@@ -31,8 +34,17 @@
 (autoload 'jinja2-mode "jinja2" nil t)
 (add-to-list 'auto-mode-alist '("\\.jinja2$" . jinja2-mode))
 
+(add-to-list 'load-path "~/.emacs.d/elisp/yaml-mode/")
+(autoload 'yaml-mode "yaml-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.yaml$" . yaml-mode))
+
+(add-to-list 'auto-mode-alist '("\\.scss$" . css-mode))
+
 (add-to-list 'load-path "~/.emacs.d/elisp/minimap/")
 (require 'minimap)
+
+(add-to-list 'load-path "~/.emacs.d/elisp/mingus/")
+(require 'mingus)
 
 (add-to-list 'load-path "~/.emacs.d/elisp/emacs-for-python/extensions/")
 (autoload 'python-mode "python" nil t)
@@ -94,11 +106,8 @@ makes)."
       temp-name))
   (defun flymake-pylint-init ()
     (let* ((temp-file (flymake-init-create-temp-buffer-copy
-                       'flymake-create-temp-intemp))
-           (local-file (file-relative-name
-                        temp-file
-                        (file-name-directory buffer-file-name))))
-      (list "~/.emacs.d/pycheckers" (list local-file))))
+                       'flymake-create-temp-intemp)))
+      (list "~/.emacs.d/pycheckers" (list temp-file))))
   (add-to-list 'flymake-allowed-file-name-masks
                '("\\.py\\'" flymake-pylint-init))
   (load-library "flymake-cursor"))
