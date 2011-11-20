@@ -122,7 +122,7 @@ makes)."
 ;; Keys
 (global-set-key (kbd "M-DEL") 'kill-word)
 (global-set-key (kbd "<M-backspace>") 'backward-kill-word)
-(global-set-key (kbd "s-SPC") 'dabbrev-expand)
+(global-set-key (kbd "s-SPC") 'python-completion-complete-at-point)
 (global-set-key (kbd "M-SPC") 'hippie-expand)
 (global-set-key (kbd "M-RET") 'flymake-display-err-menu-for-current-line)
 (global-set-key [f10] 'flymake-goto-prev-error)
