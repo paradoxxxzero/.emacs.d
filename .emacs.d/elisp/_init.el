@@ -3,7 +3,11 @@
 (load  "~/.emacs.d/elisp/zero-tools.el")
 
 (require 'jabber-autoloads)
-(setq jabber-account-list '(("fmounier@jabber.kozea.fr" (:network-server . "jabber.keleos.fr"))))
+(setq jabber-account-list
+      '(
+        ("fmounier@jabber.kozea.fr" (:network-server . "jabber.keleos.fr"))
+        ("paradoxxx.zero@gmail.com" (:network-server . "talk.google.com") (:connection-type . ssl))
+        ))
 
 ;; Mode config
 (setq jinja2-user-keywords
