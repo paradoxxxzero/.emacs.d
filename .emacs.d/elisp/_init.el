@@ -42,18 +42,20 @@
 (autoload 'yaml-mode "yaml-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.yaml$" . yaml-mode))
 
+(add-to-list 'load-path "~/.emacs.d/elisp/python-mode/")
+(autoload 'python-mode "python" nil t)
+(add-to-list 'auto-mode-alist '("\\.py$" . python-mode))
+
 (add-to-list 'auto-mode-alist '("\\.scss$" . css-mode))
 
-(add-to-list 'load-path "~/.emacs.d/elisp/minimap/")
-(require 'minimap)
+;; (add-to-list 'load-path "~/.emacs.d/elisp/minimap/")
+;; (require 'minimap)
 
-(add-to-list 'load-path "~/.emacs.d/elisp/mingus/")
-(require 'mingus)
+;; (add-to-list 'load-path "~/.emacs.d/elisp/mingus/")
+;; (require 'mingus)
 
 (add-to-list 'load-path "~/.emacs.d/elisp/emacs-for-python/extensions/")
-(autoload 'python-mode "python" nil t)
 (autoload 'cython-mode "cython-mode" nil t)
-(add-to-list 'auto-mode-alist '("\\.python$" . python-mode))
 (add-to-list 'auto-mode-alist '("\\.pyx\\'" . cython-mode))
 (add-to-list 'auto-mode-alist '("\\.pxd\\'" . cython-mode))
 (add-to-list 'auto-mode-alist '("\\.pxi\\'" . cython-mode))
