@@ -35,7 +35,7 @@
 (add-to-list 'auto-mode-alist '("\\.coffee$" . coffee-mode))
 
 (add-to-list 'load-path "~/.emacs.d/elisp/jinja2-mode/")
-(autoload 'jinja2-mode "jinja2" nil t)
+(autoload 'jinja2-mode "jinja2-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.jinja2$" . jinja2-mode))
 
 (add-to-list 'load-path "~/.emacs.d/elisp/yaml-mode/")
