@@ -111,5 +111,7 @@
  '(rst-level-2-face ((t (:foreground "PaleVioletRed3"))) t)
  '(rst-level-3-face ((t (:foreground "DarkOrchid2"))) t)
  '(secondary-selection ((t (:background "#090909"))))
+ '(whitespace-line ((t (:background "gray8" :underline "blue1"))))
+ '(whitespace-space ((t (:background "gray5" :foreground "gray20"))))
  '(zmacs-region ((t (:background "#161616")))))
 (put 'scroll-left 'disabled nil)

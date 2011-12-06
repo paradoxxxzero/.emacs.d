@@ -40,3 +40,6 @@
 [submodule ".emacs.d/elisp/python.el"]
 	path = .emacs.d/elisp/python.el
 	url = git://github.com/fgallina/python.el.git
+[submodule ".emacs.d/elisp/full-ack"]
+	path = .emacs.d/elisp/full-ack
+	url = git://github.com/nschum/full-ack.git
