@@ -26,6 +26,7 @@
  '(initial-scratch-message nil)
  '(ispell-dictionary "francais")
  '(ispell-program-name "/usr/bin/aspell")
+ '(jabber-chat-buffer-show-avatar nil)
  '(kept-new-versions 6)
  '(kept-old-versions 2)
  '(menu-bar-mode nil)
