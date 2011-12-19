@@ -1,5 +1,3 @@
-(load "~/.emacs.d/elisp/_init.el")
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -39,6 +37,7 @@
  '(rst-level-face-base-color "black")
  '(safe-local-variable-values (quote ((py-indent-offset . 4) (Mode . Python) (js2-basic-offset . 4))))
  '(scroll-bar-mode nil)
+ '(sgml-basic-offset 2)
  '(show-trailing-whitespace nil)
  '(tab-width 4)
  '(term-buffer-maximum-size 0)
@@ -116,3 +115,5 @@
  '(whitespace-space ((t (:background "gray5" :foreground "gray20"))))
  '(zmacs-region ((t (:background "#161616")))))
 (put 'scroll-left 'disabled nil)
+
+(load "~/.emacs.d/elisp/_init.el")

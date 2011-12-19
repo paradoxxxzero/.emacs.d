@@ -143,6 +143,7 @@ makes)."
 (global-set-key (kbd "S-M-SPC") 'set-mark-command)
 (global-set-key (kbd "C-$") 'comment-or-uncomment-region+)
 (global-set-key (kbd "C-.") 'backward-kill-line)
+(global-set-key (kbd "C-à") 'ack-same)
 
 (global-set-key [C-tab] 'other-window)
 (global-set-key [C-S-tab]
@@ -168,3 +169,5 @@ makes)."
 (global-set-key [(meta super right)] 'windmove-right)
 (global-set-key [(meta super up)] 'windmove-up)
 (global-set-key [(meta super down)] 'windmove-down)
+
+(server-start)
