@@ -9,18 +9,6 @@
         ("paradoxxx.zero@gmail.com" (:network-server . "talk.google.com") (:connection-type . ssl))
         ))
 
-;; Mode config
-(setq jinja2-user-keywords
-  '(
-    "auth" "showonmatch" "errorproof"))
-
-(setq jinja2-user-functions
-  '(
-    "date_format" "money_format"
-    "money_format_no_currency" "sublength"
-    "json" "percent_format" "person_title"
-    "mail_format" "sort_by" "split"))
-
 ;; Autoloads
 (add-to-list 'load-path "~/.emacs.d/elisp/lua-mode/")
 (autoload 'lua-mode "lua-mode" nil t)
