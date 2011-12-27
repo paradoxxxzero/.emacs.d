@@ -43,3 +43,12 @@
 [submodule ".emacs.d/elisp/full-ack"]
 	path = .emacs.d/elisp/full-ack
 	url = git://github.com/nschum/full-ack.git
+[submodule ".emacs.d/elisp/sass-mode"]
+	path = .emacs.d/elisp/sass-mode
+	url = git://github.com/nex3/sass-mode.git
+[submodule ".emacs.d/elisp/scss-mode"]
+	path = .emacs.d/elisp/scss-mode
+	url = git://github.com/antonj/scss-mode.git
+[submodule ".emacs.d/elisp/haml-mode"]
+	path = .emacs.d/elisp/haml-mode
+	url = git://github.com/nex3/haml-mode.git
