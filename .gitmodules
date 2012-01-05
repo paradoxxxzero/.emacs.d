@@ -37,8 +37,8 @@
 [submodule ".emacs.d/elisp/yaml-mode"]
 	path = .emacs.d/elisp/yaml-mode
 	url = git://github.com/yoshiki/yaml-mode.git
-[submodule ".emacs.d/elisp/python.el"]
-	path = .emacs.d/elisp/python.el
+[submodule ".emacs.d/elisp/python-mode"]
+	path = .emacs.d/elisp/python-mode
 	url = git://github.com/fgallina/python.el.git
 [submodule ".emacs.d/elisp/full-ack"]
 	path = .emacs.d/elisp/full-ack
