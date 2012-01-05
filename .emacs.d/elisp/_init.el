@@ -10,6 +10,7 @@
         ))
 
 ;; Autoloads
+(add-to-list 'load-path "~/.emacs.d/elisp/emacs-for-python/extensions/")
 (add-to-list 'load-path "~/.emacs.d/elisp/lua-mode/")
 (autoload 'lua-mode "lua-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.lua$" . lua-mode))
@@ -54,7 +55,6 @@
 ;; (add-to-list 'load-path "~/.emacs.d/elisp/mingus/")
 ;; (require 'mingus)
 
-(add-to-list 'load-path "~/.emacs.d/elisp/emacs-for-python/extensions/")
 (autoload 'cython-mode "cython-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.pyx\\'" . cython-mode))
 (add-to-list 'auto-mode-alist '("\\.pxd\\'" . cython-mode))
