@@ -66,6 +66,10 @@
 (autoload 'ack-find-same-file "full-ack" nil t)
 (autoload 'ack-find-file "full-ack" nil t)
 
+(add-to-list 'load-path "~/.emacs.d/elisp/pretty-mode")
+(require 'pretty-mode)
+(global-pretty-mode)
+
 ;; Hippie expand
 (setq hippie-expand-try-functions-list
       '(try-expand-dabbrev
