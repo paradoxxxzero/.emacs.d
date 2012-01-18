@@ -145,11 +145,19 @@ makes)."
 (global-set-key (kbd "C-.") 'backward-kill-line)
 (global-set-key (kbd "C-à") 'ack-same)
 
+(global-set-key [mouse-6] 'next-buffer)
+(global-set-key [mouse-7] 'previous-buffer)
+(global-set-key [S-mouse-8] 'other-window)
+(global-set-key [S-mouse-9]
+                (lambda ()
+                  (interactive)
+                  (other-window -1)))
 (global-set-key [C-tab] 'other-window)
 (global-set-key [C-S-tab]
                 (lambda ()
                   (interactive)
                   (other-window -1)))
+
 
 (global-set-key [C-up] 'duplicate-line-or-region-above)
 (global-set-key [C-down] 'duplicate-line-or-region-below)

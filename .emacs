@@ -39,6 +39,7 @@
  '(rst-level-face-base-color "black")
  '(safe-local-variable-values (quote ((py-indent-offset . 4) (Mode . Python) (js2-basic-offset . 4))))
  '(scroll-bar-mode nil)
+ '(scss-compile-at-save nil)
  '(sgml-basic-offset 2)
  '(show-trailing-whitespace nil)
  '(tab-width 4)
