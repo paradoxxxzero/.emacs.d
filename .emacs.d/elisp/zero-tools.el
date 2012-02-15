@@ -128,3 +128,38 @@ matches."
 ;; match--duplicating `C-s' and `C-r', respectively.
 (define-key isearch-mode-map (kbd "C-é") 'isearch-repeat-forward)
 (define-key isearch-mode-map (kbd "C-è") 'isearch-repeat-backward)
+
+(defun fix-window-horizontal-size (width)
+  "Set the window's size to 80 (or prefix arg WIDTH) columns wide."
+  (interactive "P")
+  (enlarge-window (- (or width 80) (window-width)) 'horizontal))
+(global-set-key (kbd "<f8>") 'fix-window-horizontal-size)
+
+(defun cursor-according-to-mode ()
+  "change cursor color and type according to some minor modes."
+
+  (cond
+    (buffer-read-only
+      (set-cursor-color "orange")
+      (setq cursor-type 'hbar))
+    (overwrite-mode
+      (set-cursor-color "red")
+      (setq cursor-type 'box))
+    (t 
+      (set-cursor-color "yellow")
+      (setq cursor-type '(bar . 3)))))
+
+(add-hook 'post-command-hook 'cursor-according-to-mode)
+
+(defvar blink-cursor-colors hl-paren-colors)
+(setq blink-cursor-count 0)
+(defun blink-cursor-timer-function ()
+  "Rainbow cursor !!!"
+  (when (not (internal-show-cursor-p))
+    (when (>= blink-cursor-count (length blink-cursor-colors))
+      (setq blink-cursor-count 0))
+    (set-cursor-color (nth blink-cursor-count blink-cursor-colors))
+    (setq blink-cursor-count (+ 1 blink-cursor-count))
+    )
+  (internal-show-cursor nil (not (internal-show-cursor-p)))
+  )

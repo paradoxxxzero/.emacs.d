@@ -182,4 +182,11 @@ makes)."
 (global-set-key [(meta super up)] 'windmove-up)
 (global-set-key [(meta super down)] 'windmove-down)
 
+(global-set-key (kbd "s-C-<left>") 'shrink-window-horizontally)
+(global-set-key (kbd "s-C-<right>") 'enlarge-window-horizontally)
+(global-set-key (kbd "s-C-<up>") 'shrink-window)
+(global-set-key (kbd "s-C-<down>") 'enlarge-window)
+
+(global-set-key (kbd "<XF86Calculator>") 'flymake-start-syntax-check)
+
 (server-start)

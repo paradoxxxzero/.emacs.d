@@ -64,7 +64,7 @@
  '(ac-selection-face ((t (:background "black" :foreground "red"))))
  '(button ((t (:box (:line-width 1 :color "violet red" :style released-button)))))
  '(c-annotation-face ((t (:foreground "deep sky blue"))))
- '(cursor ((t (:inverse-video t))))
+ '(cursor ((t (:background "light steel blue"))))
  '(custom-button-pressed-unraised ((t (:foreground "violet" :box (:line-width 1 :color "DodgerBlue1" :style pressed-button)))))
  '(custom-button-unraised ((t (:box (:line-width 1 :color "DodgerBlue1" :style released-button)))))
  '(custom-comment-tag ((t (:foreground "gray30"))))
