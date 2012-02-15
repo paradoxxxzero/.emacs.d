@@ -55,3 +55,12 @@
 [submodule ".emacs.d/elisp/pretty-mode"]
 	path = .emacs.d/elisp/pretty-mode
 	url = git@github.com:paradoxxxzero/pretty-mode.git
+[submodule ".emacs.d/elisp/flymake"]
+	path = .emacs.d/elisp/flymake
+	url = git://github.com/illusori/emacs-flymake.git
+[submodule ".emacs.d/elisp/flymake-cursor"]
+	path = .emacs.d/elisp/flymake-cursor
+	url = git://github.com/illusori/emacs-flymake-cursor.git
+[submodule ".emacs.d/elisp/pylookup"]
+	path = .emacs.d/elisp/pylookup
+	url = git://github.com/tsgates/pylookup.git
