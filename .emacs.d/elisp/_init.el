@@ -1,13 +1,34 @@
 (load  "~/.emacs.d/elisp/basic-edit-toolkit.el")
 (load  "~/.emacs.d/elisp/highlight-parentheses/highlight-parentheses.el")
 (load  "~/.emacs.d/elisp/zero-tools.el")
-
+(load  "~/.emacs.d/elisp/mode-line.el")
+(load  "~/.__jabber.el")
 (require 'jabber-autoloads)
 (setq jabber-account-list
-      '(
-        ("fmounier@jabber.kozea.fr" (:network-server . "jabber.keleos.fr"))
-        ("paradoxxx.zero@gmail.com" (:network-server . "talk.google.com") (:connection-type . ssl))
+      `(
+        ("fmounier@jabber.kozea.fr" (:network-server . "jabber.keleos.fr") (:password . ,kjabber))
+        ("paradoxxx.zero@gmail.com" (:network-server . "talk.google.com") (:password . ,gtalkjabber) (:connection-type . ssl))
         ))
+
+
+(defvar libnotify-program "/usr/bin/notify-send")
+
+(defun notify-send (title message)
+  (start-process "notify" " notify"
+                 libnotify-program "--expire-time=4000" title message))
+
+(defun libnotify-jabber-notify (from buf text proposed-alert)
+  "(jabber.el hook) Notify of new Jabber chat messages via libnotify"
+  (when (or jabber-message-alert-same-buffer
+            (not (memq (selected-window) (get-buffer-window-list buf))))
+    (if (jabber-muc-sender-p from)
+        (notify-send (format "(PM) %s"
+                       (jabber-jid-displayname (jabber-jid-user from)))
+               (format "%s: %s" (jabber-jid-resource from) text)))
+      (notify-send (format "%s" (jabber-jid-displayname from))
+             text)))
+
+(add-hook 'jabber-alert-message-hooks 'libnotify-jabber-notify)
 
 ;; Autoloads
 (add-to-list 'load-path "~/.emacs.d/elisp/lua-mode/")
@@ -51,6 +72,12 @@
 (add-to-list 'auto-mode-alist '("\\.pxd\\'" . cython-mode))
 (add-to-list 'auto-mode-alist '("\\.pxi\\'" . cython-mode))
 
+(add-to-list 'load-path "~/.emacs.d/elisp/undo-tree")
+;; (require 'undo-tree)
+
+(add-to-list 'load-path "~/.emacs.d/elisp/anything-config")
+(require 'anything-config)
+
 (add-to-list 'load-path "~/.emacs.d/elisp/flymake")
 (require 'flymake)
 (defun flymake-python-init ()
@@ -62,6 +89,7 @@
     (list "~/.emacs.d/pycheckers" (list local-file))))
 (add-to-list 'flymake-allowed-file-name-masks '("\\.py\\'" flymake-python-init))
 (add-hook 'python-mode-hook 'flymake-find-file-hook)
+(add-hook 'css-mode-hook 'flymake-find-file-hook)
 (add-to-list 'load-path "~/.emacs.d/elisp/flymake-cursor")
 (require 'flymake-cursor)
 
@@ -175,4 +203,11 @@
 (global-set-key (kbd "<XF86Calculator>") 'flymake-start-syntax-check)
 (global-set-key (kbd "<XF86Mail>") 'pylookup-lookup)
 
+;; (global-set-key (kbd "C-x u") 'undo-tree-undo)
+;; (global-set-key (kbd "C-x y") 'undo-tree-redo)
+;; (global-set-key (kbd "C-x C-u") 'undo-tree-visualize)
+;; (global-set-key (kbd "<f6>") 'undo-tree-save-state-to-register)
+;; (global-set-key (kbd "<f9>") 'undo-tree-restore-state-from-register)
+
 (server-start)
+(jabber-connect-all)

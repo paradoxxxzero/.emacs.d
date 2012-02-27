@@ -64,3 +64,12 @@
 [submodule ".emacs.d/elisp/pylookup"]
 	path = .emacs.d/elisp/pylookup
 	url = git://github.com/tsgates/pylookup.git
+[submodule ".emacs.d/elisp/undo-tree"]
+	path = .emacs.d/elisp/undo-tree
+	url = git://github.com/emacsmirror/undo-tree.git
+[submodule ".emacs.d/elisp/anything-config"]
+	path = .emacs.d/elisp/anything-config
+	url = git://repo.or.cz/anything-config.git
+[submodule ".emacs.d/elisp/nyan-mode"]
+	path = .emacs.d/elisp/nyan-mode
+	url = git://github.com/TeMPOraL/nyan-mode.git
