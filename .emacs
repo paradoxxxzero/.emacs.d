@@ -11,6 +11,7 @@
  '(browse-url-browser-function (quote browse-url-chromium))
  '(css-indent-offset 2)
  '(delete-old-versions t)
+ '(erc-nick "paradoxxxzero")
  '(explicit-shell-file-name "/bin/zsh")
  '(fci-rule-color "#222222")
  '(fci-rule-width 1)
