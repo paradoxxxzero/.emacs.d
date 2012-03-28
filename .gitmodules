@@ -73,3 +73,6 @@
 [submodule ".emacs.d/elisp/nyan-mode"]
 	path = .emacs.d/elisp/nyan-mode
 	url = git://github.com/TeMPOraL/nyan-mode.git
+[submodule ".emacs.d/elisp/mark-multiple"]
+	path = .emacs.d/elisp/mark-multiple
+	url = git://github.com/magnars/mark-multiple.el.git

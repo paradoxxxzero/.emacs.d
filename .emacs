@@ -67,7 +67,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "#000000" :foreground "#eeeeee" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "unknown" :family "monofur"))))
+ '(default ((t (:inherit nil :stipple nil :background "#000000" :foreground "#eeeeee" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "unknown" :family "Ubuntu Mono"))))
  '(ac-candidate-face ((t (:background "black" :foreground "dark orange"))))
  '(ac-completion-face ((t (:foreground "yellow" :box (:line-width 2 :color "blue" :style released-button)))))
  '(ac-selection-face ((t (:background "black" :foreground "red"))))
@@ -109,6 +109,8 @@
  '(menu ((t (:foreground "saddle brown"))))
  '(minibuffer-prompt ((t (:bold t :foreground "#ff6600"))))
  '(minimap-font-face ((t (:height 20 :family "DejaVu Sans Mono"))))
+ '(mm/master-face ((t (:inverse-video t :weight bold))))
+ '(mm/mirror-face ((t (:inverse-video t))))
  '(mode-line ((t (:foreground "#cccccc" :background "#222222" :box nil))))
  '(mode-line-buffer-id ((t (:foreground "#eeeeee" :background "#191919" :box nil))))
  '(mode-line-inactive ((t (:foreground "#a4a4a4" :background "#222222" :box nil))))
