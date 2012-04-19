@@ -10,26 +10,6 @@
         ("paradoxxx.zero@gmail.com" (:network-server . "talk.google.com") (:password . ,gtalkjabber) (:connection-type . ssl))
         ))
 
-
-(defvar libnotify-program "/usr/bin/notify-send")
-
-(defun notify-send (title message)
-  (start-process "notify" " notify"
-                 libnotify-program "--expire-time=4000" title message))
-
-(defun libnotify-jabber-notify (from buf text proposed-alert)
-  "(jabber.el hook) Notify of new Jabber chat messages via libnotify"
-  (when (or jabber-message-alert-same-buffer
-            (not (memq (selected-window) (get-buffer-window-list buf))))
-    (if (jabber-muc-sender-p from)
-        (notify-send (format "(PM) %s"
-                       (jabber-jid-displayname (jabber-jid-user from)))
-               (format "%s: %s" (jabber-jid-resource from) text)))
-      (notify-send (format "%s" (jabber-jid-displayname from))
-             text)))
-
-(add-hook 'jabber-alert-message-hooks 'libnotify-jabber-notify)
-
 ;; Autoloads
 (add-to-list 'load-path "~/.emacs.d/elisp/lua-mode/")
 (autoload 'lua-mode "lua-mode" nil t)
@@ -128,6 +108,7 @@
 (setq pylookup-dir "~/.emacs.d/elisp/pylookup")
 (add-to-list 'load-path pylookup-dir)
 
+(setq-default frame-title-format (list "%b - Emacs"))
 ;; load pylookup when compile time
 (eval-when-compile (require 'pylookup))
 
@@ -147,6 +128,8 @@
 
 (standard-display-ascii ?\t "↹    ")
 
+;; Tramp remote sudo: /sudo:root@host[#port]:/path/to/file
+(set-default 'tramp-default-proxies-alist (quote ((".*" "\\`root\\'" "/ssh:%h:"))))
 
 (add-to-list 'load-path "~/.emacs.d/elisp/mark-multiple")
 
