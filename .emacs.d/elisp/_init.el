@@ -145,6 +145,9 @@
 
 (add-hook 'after-save-hook 'pygal-after-save-hook)
 
+(add-to-list 'load-path "~/.emacs.d/elisp/pyregexp") ;; if the files are not already in the load path
+(require 'pyregexp)
+(define-key global-map (kbd "M-à") 'pyregexp-replace)
 
 (require 'inline-string-rectangle)
 (global-set-key (kbd "C-x r t") 'inline-string-rectangle)
