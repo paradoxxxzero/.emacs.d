@@ -133,6 +133,19 @@
 
 (add-to-list 'load-path "~/.emacs.d/elisp/mark-multiple")
 
+
+(defun pygal-after-save-hook ()
+  "After saving a pygal python file, run tests"
+  (if buffer-file-name
+      (progn
+        (if (numberp (string-match "kozea/pygal/.*\.py$" buffer-file-name))
+            (progn
+              (async-shell-command "cd ~/kozea/pygal/; ~/.envs/pygal/bin/python ./demo/simple_test.py")
+              (message "Simple test launched" "*pygal*"))))))
+
+(add-hook 'after-save-hook 'pygal-after-save-hook)
+
+
 (require 'inline-string-rectangle)
 (global-set-key (kbd "C-x r t") 'inline-string-rectangle)
 
