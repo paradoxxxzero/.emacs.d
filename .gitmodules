@@ -1,6 +1,6 @@
 [submodule ".emacs.d/elisp/jinja2-mode"]
 	path = .emacs.d/elisp/jinja2-mode
-	url = git@github.com:paradoxxxzero/jinja2-mode.git
+	url = git://github.com/paradoxxxzero/jinja2-mode.git
 [submodule ".emacs.d/elisp/emacs-for-python"]
 	path = .emacs.d/elisp/emacs-for-python
 	url = git://github.com/gabrielelanaro/emacs-for-python.git
@@ -54,7 +54,7 @@
 	url = git://github.com/fgallina/python.el.git
 [submodule ".emacs.d/elisp/pretty-mode"]
 	path = .emacs.d/elisp/pretty-mode
-	url = git@github.com:paradoxxxzero/pretty-mode.git
+	url = git://github.com/paradoxxxzero/pretty-mode.git
 [submodule ".emacs.d/elisp/flymake"]
 	path = .emacs.d/elisp/flymake
 	url = git://github.com/illusori/emacs-flymake.git
@@ -79,3 +79,6 @@
 [submodule ".emacs.d/elisp/pyregexp"]
 	path = .emacs.d/elisp/pyregexp
 	url = git://github.com/benma/pyregexp.git
+[submodule ".emacs.d/elisp/shell-parse"]
+	path = .emacs.d/elisp/shell-parse
+	url = git://github.com/malloc47/shell-parse.el.git

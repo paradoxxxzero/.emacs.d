@@ -84,6 +84,8 @@
 (require 'pretty-mode)
 (global-pretty-mode)
 
+
+
 ;; Hippie expand
 (setq hippie-expand-try-functions-list
       '(try-expand-dabbrev
@@ -94,8 +96,7 @@
         try-expand-all-abbrevs
         try-expand-list
         try-expand-line
-        try-complete-lisp-symbol-partially
-        try-complete-lisp-symbol))
+        try-expand-google))
 
 ;; Ido
 (autoload 'ido-everywhere "ido")
@@ -134,16 +135,10 @@
 (add-to-list 'load-path "~/.emacs.d/elisp/mark-multiple")
 
 
-(defun pygal-after-save-hook ()
-  "After saving a pygal python file, run tests"
-  (if buffer-file-name
-      (progn
-        (if (numberp (string-match "kozea/pygal/.*\.py$" buffer-file-name))
-            (progn
-              (async-shell-command "cd ~/kozea/pygal/; ~/.envs/pygal/bin/python ./demo/simple_test.py")
-              (message "Simple test launched" "*pygal*"))))))
+(add-after-save-hook "kozea/pygal/.*\.py$" "cd ~/kozea/pygal/; ~/.envs/pygal/bin/python ./demo/simple_test.py")
+(add-after-save-hook "kozea/sitenco/projects/pygal/" "wsreload --url 'http://pygal.local/*'")
+(add-after-save-hook "kozea/labocube" "wsreload --url 'http://localhost:3795/*'")
 
-(add-hook 'after-save-hook 'pygal-after-save-hook)
 
 (add-to-list 'load-path "~/.emacs.d/elisp/pyregexp") ;; if the files are not already in the load path
 (require 'pyregexp)
@@ -172,8 +167,8 @@
 (global-set-key (kbd "C-.") 'backward-kill-line)
 (global-set-key (kbd "C-à") 'ack-same)
 
-(global-set-key [mouse-6] 'next-buffer)
-(global-set-key [mouse-7] 'previous-buffer)
+(global-set-key [mouse-7] 'next-buffer)
+(global-set-key [mouse-6] 'previous-buffer)
 (global-set-key [S-mouse-8] 'other-window)
 (global-set-key [S-mouse-9]
                 (lambda ()

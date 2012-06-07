@@ -163,3 +163,46 @@ matches."
     )
   (internal-show-cursor nil (not (internal-show-cursor-p)))
   )
+
+(defun add-after-save-hook (file_re cmd)
+  "Run a command on file save if filename match the regexp"
+  (add-hook
+   'after-save-hook
+   `(lambda ()
+     (if (and buffer-file-name (numberp (string-match ,file_re buffer-file-name)))
+         (async-shell-command ,cmd)))))
+
+
+(defun urlget (url)
+  (let ((buff (url-retrieve-synchronously url)))
+    (with-current-buffer buff
+      (end-of-buffer)
+      (move-beginning-of-line nil)
+      (buffer-substring-no-properties (point) (point-max)))))
+
+(defun parseresults (response)
+  (cdr
+   (split-string (replace-regexp-in-string "\\([\]\"\[]\\)" "" response) ",")))
+
+
+(defun try-expand-google (old)
+  (let ((expansion ()))
+    (if (not old)
+        (progn
+          (he-init-string (he-dabbrev-beg) (point))
+          (setq he-expand-list
+                (if (not (equal he-search-string ""))
+                    (parseresults 
+                     (urlget 
+                      (concat "http://suggestqueries.google.com/complete/search?client=firefox&hl=fr&q="
+                              he-search-string)))))
+          (setq he-search-loc2 0)))
+    (if (not (equal he-search-string ""))
+        (setq expansion (he-dabbrev-kill-search he-search-string)))
+    (if (not expansion)
+        (progn
+          (if old (he-reset-string))
+          ())
+      (progn
+        (he-substitute-string expansion t)
+        t))))
