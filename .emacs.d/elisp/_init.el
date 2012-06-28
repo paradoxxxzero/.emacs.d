@@ -138,6 +138,8 @@
 (add-after-save-hook "kozea/pygal/.*\.py$" "cd ~/kozea/pygal/; ~/.envs/pygal/bin/python ./demo/simple_test.py")
 (add-after-save-hook "kozea/sitenco/projects/pygal/" "wsreload --url 'http://pygal.local/*'")
 (add-after-save-hook "kozea/labocube" "wsreload --url 'http://localhost:3795/*'")
+(add-after-save-hook "kozea/elearning" "wsreload --url 'http://manager.local:5999/*'")
+(add-after-save-hook "kozea/elearning" "wsreload --url 'http://student.local:5111/*'")
 
 
 (add-to-list 'load-path "~/.emacs.d/elisp/pyregexp") ;; if the files are not already in the load path
@@ -213,6 +215,7 @@
 ;; (global-set-key (kbd "C-x C-u") 'undo-tree-visualize)
 ;; (global-set-key (kbd "<f6>") 'undo-tree-save-state-to-register)
 ;; (global-set-key (kbd "<f9>") 'undo-tree-restore-state-from-register)
+
 
 (server-start)
 (jabber-connect-all)

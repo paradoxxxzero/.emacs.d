@@ -170,7 +170,7 @@ matches."
    'after-save-hook
    `(lambda ()
      (if (and buffer-file-name (numberp (string-match ,file_re buffer-file-name)))
-         (async-shell-command ,cmd)))))
+         (call-process-shell-command ,cmd nil 0)))))
 
 
 (defun urlget (url)

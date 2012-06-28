@@ -135,3 +135,5 @@
 (put 'scroll-left 'disabled nil)
 (fset 'yes-or-no-p 'y-or-n-p)
 (load "~/.emacs.d/elisp/_init.el")
+(put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)
