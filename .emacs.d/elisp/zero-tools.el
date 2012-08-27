@@ -1,3 +1,4 @@
+
 (defun move-text-internal (arg)
   (cond
    ((and mark-active transient-mark-mode)
@@ -206,3 +207,42 @@ matches."
       (progn
         (he-substitute-string expansion t)
         t))))
+
+(defun swap-buffers () 
+  (interactive)
+  (let ((w1 (selected-window)) (w2 (next-window)))
+    (let ((b1 (window-buffer w1)) (b2 (window-buffer w2)))
+      (set-window-buffer w1 b2)
+      (set-window-buffer w2 b1)
+      (select-window w2))))
+
+(defun clone-buffer ()
+  (interactive)
+  (set-window-buffer (next-window) (window-buffer (selected-window))))
+
+
+(defun wrap-region (char1 &optional char2)
+  `(lambda (start end)
+    (interactive "r")
+    (if (use-region-p)
+        (progn
+          (goto-char start)
+          (insert ,char1)
+          (goto-char (+ end 1))
+          (insert ,(or char2 char1)))
+      (insert ,char1))))
+
+(defun goto-match-paren (arg)
+  "Go to the matching  if on (){}[], similar to vi style of % "
+  (interactive "p")
+  ;; first, check for "outside of bracket" positions expected by forward-sexp, etc.
+  (cond ((looking-at "[\[\(\{]") (forward-sexp))
+        ((looking-back "[\]\)\}]" 1) (backward-sexp))
+        ;; now, try to succeed from inside of a bracket
+        ((looking-at "[\]\)\}]") (forward-char) (backward-sexp))
+        ((looking-back "[\[\(\{]" 1) (backward-char) (forward-sexp))
+        (t nil)))
+;; (mapc
+;;  (lambda (l) (global-set-key (read-kbd-macro (concat "C-" (car l))) (apply 'wrap-region l)))
+;;  '(("'") ("\"") ("`") ("(" ")") ("[" "]") ("{" "}") ("<" ">")))
+

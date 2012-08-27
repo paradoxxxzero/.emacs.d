@@ -82,3 +82,6 @@
 [submodule ".emacs.d/elisp/shell-parse"]
 	path = .emacs.d/elisp/shell-parse
 	url = git://github.com/malloc47/shell-parse.el.git
+[submodule ".emacs.d/elisp/powerline"]
+	path = .emacs.d/elisp/powerline
+	url = git://github.com/jonathanchu/emacs-powerline.git

@@ -1,14 +1,14 @@
 (load  "~/.emacs.d/elisp/basic-edit-toolkit.el")
 (load  "~/.emacs.d/elisp/highlight-parentheses/highlight-parentheses.el")
-(load  "~/.emacs.d/elisp/zero-tools.el")
-(load  "~/.emacs.d/elisp/mode-line.el")
-(load  "~/.__jabber.el")
-(require 'jabber-autoloads)
-(setq jabber-account-list
-      `(
-        ("fmounier@jabber.kozea.fr" (:network-server . "jabber.keleos.fr") (:password . ,kjabber))
-        ("paradoxxx.zero@gmail.com" (:network-server . "talk.google.com") (:password . ,gtalkjabber) (:connection-type . ssl))
-        ))
+ (load  "~/.emacs.d/elisp/zero-tools.el")
+;; (load  "~/.emacs.d/elisp/mode-line.e;; l")
+;; (load  "~/.__jabber.el")
+;; (require 'jabber-autoloads)
+;; (setq jabber-account-list
+      ;; `(
+        ;; ("fmounier@jabber.kozea.fr" (:network-server . "jabber.keleos.fr") (:password . ,kjabber))
+        ;; ("paradoxxx.zero@gmail.com" (:network-server . "talk.google.com") (:password . ,gtalkjabber) (:connection-type . ssl))
+        ;; ))
 
 ;; Autoloads
 (add-to-list 'load-path "~/.emacs.d/elisp/lua-mode/")
@@ -52,11 +52,14 @@
 (add-to-list 'auto-mode-alist '("\\.pxd\\'" . cython-mode))
 (add-to-list 'auto-mode-alist '("\\.pxi\\'" . cython-mode))
 
-(add-to-list 'load-path "~/.emacs.d/elisp/undo-tree")
+;; (add-to-list 'load-path "~/.emacs.d/elisp/undo-tree")
 ;; (require 'undo-tree)
 
-(add-to-list 'load-path "~/.emacs.d/elisp/anything-config")
-(require 'anything-config)
+(add-to-list 'load-path "~/.emacs.d/elisp/powerline")
+(require 'powerline)
+
+;; (add-to-list 'load-path "~/.emacs.d/elisp/anything-config")
+;; (require 'anything-config)
 
 (add-to-list 'load-path "~/.emacs.d/elisp/flymake")
 (require 'flymake)
@@ -105,27 +108,27 @@
 
 (setq ido-enable-flex-matching t) ;; enable fuzzy matching
 
-(add-to-list 'load-path "~/.emacs.d/elisp/pylookup")
-(setq pylookup-dir "~/.emacs.d/elisp/pylookup")
-(add-to-list 'load-path pylookup-dir)
+;; (add-to-list 'load-path "~/.emacs.d/elisp/pylookup")
+;; (setq pylookup-dir "~/.emacs.d/elisp/pylookup")
+;; (add-to-list 'load-path pylookup-dir)
 
-(setq-default frame-title-format (list "%b - Emacs"))
+;; (setq-default frame-title-format (list "%b - Emacs"))
 ;; load pylookup when compile time
-(eval-when-compile (require 'pylookup))
+;; (eval-when-compile (require 'pylookup))
 
 ;; set executable file and db file
-(setq pylookup-program (concat pylookup-dir "/pylookup.py"))
-(setq pylookup-db-file (concat pylookup-dir "/pylookup.db"))
+;; (setq pylookup-program (concat pylookup-dir "/pylookup.py"))
+;; (setq pylookup-db-file (concat pylookup-dir "/pylookup.db"))
 
 ;; set search option if you want
 ;; (setq pylookup-search-options '("--insensitive" "0" "--desc" "0"))
 
 ;; to speedup, just load it on demand
-(autoload 'pylookup-lookup "pylookup"
-  "Lookup SEARCH-TERM in the Python HTML indexes." t)
+;; (autoload 'pylookup-lookup "pylookup"
+  ;; "Lookup SEARCH-TERM in the Python HTML indexes." t)
 
-(autoload 'pylookup-update "pylookup" 
-  "Run pylookup-update and create the database at `pylookup-db-file'." t)
+;; (autoload 'pylookup-update "pylookup" 
+  ;; "Run pylookup-update and create the database at `pylookup-db-file'." t)
 
 (standard-display-ascii ?\t "↹    ")
 
@@ -136,15 +139,20 @@
 
 
 (add-after-save-hook "kozea/pygal/.*\.py$" "cd ~/kozea/pygal/; ~/.envs/pygal/bin/python ./demo/simple_test.py")
-(add-after-save-hook "kozea/sitenco/projects/pygal/" "wsreload --url 'http://pygal.local/*'")
+(add-after-save-hook "kozea/sitenco/projects/pygal/" "wsreload --url 'http://pygal.l/*'")
+(add-after-save-hook "kozea/hydra" "wsreload --url 'http://*.pharminfo.fr.zero:5000/*'")
+(add-after-save-hook "kozea/hydra" "wsreload --url 'http://*.groupinfo.fr.zero:5001/*'")
 (add-after-save-hook "kozea/labocube" "wsreload --url 'http://localhost:3795/*'")
-(add-after-save-hook "kozea/elearning" "wsreload --url 'http://manager.local:5999/*'")
-(add-after-save-hook "kozea/elearning" "wsreload --url 'http://student.local:5111/*'")
-
+(add-after-save-hook "kozea/elearning" "wsreload --url 'http://manager.l:5999/*'")
+(add-after-save-hook "kozea/elearning" "wsreload --url 'http://student.l:5111/*'")
+(add-after-save-hook "_/umlaut" "wsreload --url 'file:///home/zero/_/umlaut/index.html'")
+(add-after-save-hook "_/phy" "wsreload --url 'file:///home/zero/_/phy/index.html'")
+(add-after-save-hook "_/gol" "wsreload --url 'file:///home/zero/_/gol/index.html'")
+(add-after-save-hook "_/coffee2d" "wsreload --url 'file:///home/zero/_/coffee2d/index.html'")
 
 (add-to-list 'load-path "~/.emacs.d/elisp/pyregexp") ;; if the files are not already in the load path
 (require 'pyregexp)
-(define-key global-map (kbd "M-à") 'pyregexp-replace)
+;;(global-set-key (kbd "M-à") 'pyregexp-replace)
 
 (require 'inline-string-rectangle)
 (global-set-key (kbd "C-x r t") 'inline-string-rectangle)
@@ -168,6 +176,8 @@
 (global-set-key (kbd "C-$") 'comment-or-uncomment-region+)
 (global-set-key (kbd "C-.") 'backward-kill-line)
 (global-set-key (kbd "C-à") 'ack-same)
+(global-set-key (kbd "s-<tab>") 'swap-buffers)
+(global-set-key (kbd "C-s-<tab>") 'clone-buffer)
 
 (global-set-key [mouse-7] 'next-buffer)
 (global-set-key [mouse-6] 'previous-buffer)
@@ -210,12 +220,13 @@
 (global-set-key (kbd "<XF86Calculator>") 'flymake-start-syntax-check)
 (global-set-key (kbd "<XF86Mail>") 'pylookup-lookup)
 
+(global-set-key (kbd "C-%") 'goto-match-paren)
+
 ;; (global-set-key (kbd "C-x u") 'undo-tree-undo)
 ;; (global-set-key (kbd "C-x y") 'undo-tree-redo)
 ;; (global-set-key (kbd "C-x C-u") 'undo-tree-visualize)
 ;; (global-set-key (kbd "<f6>") 'undo-tree-save-state-to-register)
 ;; (global-set-key (kbd "<f9>") 'undo-tree-restore-state-from-register)
 
-
 (server-start)
-(jabber-connect-all)
+;; (jabber-connect-all)
