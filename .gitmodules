@@ -85,3 +85,6 @@
 [submodule ".emacs.d/elisp/powerline"]
 	path = .emacs.d/elisp/powerline
 	url = git://github.com/jonathanchu/emacs-powerline.git
+[submodule ".emacs.d/elisp/less-css-mode"]
+	path = .emacs.d/elisp/less-css-mode
+	url = git://github.com/purcell/less-css-mode.git

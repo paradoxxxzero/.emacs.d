@@ -47,6 +47,10 @@
 (autoload 'sass-mode "sass-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.sass$" . sass-mode))
 
+(add-to-list 'load-path "~/.emacs.d/elisp/less-css-mode/")
+(autoload 'less-css-mode "less-css-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.less$" . less-css-mode))
+
 (autoload 'cython-mode "cython-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.pyx\\'" . cython-mode))
 (add-to-list 'auto-mode-alist '("\\.pxd\\'" . cython-mode))
@@ -145,6 +149,7 @@
 (add-after-save-hook "kozea/labocube" "wsreload --url 'http://localhost:3795/*'")
 (add-after-save-hook "kozea/elearning" "wsreload --url 'http://manager.l:5999/*'")
 (add-after-save-hook "kozea/elearning" "wsreload --url 'http://student.l:5111/*'")
+(add-after-save-hook "kozea/pygal/demo" "wsreload --url 'http://moulinrouge.l:21112/*'")
 (add-after-save-hook "_/umlaut" "wsreload --url 'file:///home/zero/_/umlaut/index.html'")
 (add-after-save-hook "_/phy" "wsreload --url 'file:///home/zero/_/phy/index.html'")
 (add-after-save-hook "_/gol" "wsreload --url 'file:///home/zero/_/gol/index.html'")
@@ -221,6 +226,7 @@
 (global-set-key (kbd "<XF86Mail>") 'pylookup-lookup)
 
 (global-set-key (kbd "C-%") 'goto-match-paren)
+(global-set-key (kbd "<f12>") 'shell-command-on-region)
 
 ;; (global-set-key (kbd "C-x u") 'undo-tree-undo)
 ;; (global-set-key (kbd "C-x y") 'undo-tree-redo)
