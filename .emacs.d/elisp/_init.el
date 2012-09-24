@@ -160,8 +160,6 @@
 (require 'pyregexp)
 ;;(global-set-key (kbd "M-à") 'pyregexp-replace)
 
-(require 'inline-string-rectangle)
-(global-set-key (kbd "C-x r t") 'inline-string-rectangle)
 
 (add-to-list 'load-path "~/.emacs.d/elisp/multiple-cursors")
 (require 'multiple-cursors)
