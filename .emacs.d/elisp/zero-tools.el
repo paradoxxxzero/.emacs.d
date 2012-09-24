@@ -181,6 +181,30 @@ matches."
       (move-beginning-of-line nil)
       (buffer-substring-no-properties (point) (point-max)))))
 
+(defun urlpost (url data)
+  (let ((url-request-method        "POST")
+        (url-request-extra-headers `(("Content-Type" . "application/x-www-form-urlencoded")))
+        (url-request-data          data))
+    (let ((buff (url-retrieve-synchronously url)))
+      (with-current-buffer buff
+        (end-of-buffer)
+        (move-beginning-of-line nil)
+        (buffer-substring-no-properties (point) (point-max))))))
+
+(defun urlpost-google-spelling (term)
+  (let ((url-request-method        "POST")
+        (url-request-extra-headers `(("Content-Type" . "application/x-www-form-urlencoded")))
+        (url-request-data          (concat "<?xml version=\"1.0\" encoding=\"utf-8\" ?><spellrequest textalreadyclipped=\"0\" ignoredups=\"0\" ignoredigits=\"1\" ignoreallcaps=\"1\"><text>" term "</text></spellrequest>")))
+    (let ((buff (url-retrieve-synchronously "http://www.google.com/tbproxy/spell?lang=en")))
+      (with-current-buffer buff
+        (end-of-buffer)
+        (move-beginning-of-line nil)
+        (let ((start (search-forward-regexp "<c.+?>" nil t)))
+          (if (not start)
+              nil
+            (search-forward-regexp "</c>")
+            (split-string (buffer-substring-no-properties start (- (point) 4)) "	")))))))
+
 (defun parseresults (response)
   (cdr
    (split-string (replace-regexp-in-string "\\([\]\"\[]\\)" "" response) ",")))
@@ -200,6 +224,27 @@ matches."
           (setq he-search-loc2 0)))
     (if (not (equal he-search-string ""))
         (setq expansion (he-dabbrev-kill-search he-search-string)))
+    (if (not expansion)
+        (progn
+          (if old (he-reset-string))
+          ())
+      (progn
+        (he-substitute-string expansion t)
+        t))))
+
+(defun try-expand-google-spelling (old)
+  (let ((expansion ()))
+    (if (not old)
+        (progn
+          (he-init-string (he-dabbrev-beg) (point))
+          (setq he-expand-list
+                (if (not (equal he-search-string ""))
+                    (urlpost-google-spelling he-search-string)))
+          (setq he-search-loc2 0)))
+    (if (not (equal he-search-string ""))
+        (progn
+          (setq expansion (car he-expand-list))
+          (setq he-expand-list (cdr he-expand-list))))
     (if (not expansion)
         (progn
           (if old (he-reset-string))
@@ -246,3 +291,16 @@ matches."
 ;;  (lambda (l) (global-set-key (read-kbd-macro (concat "C-" (car l))) (apply 'wrap-region l)))
 ;;  '(("'") ("\"") ("`") ("(" ")") ("[" "]") ("{" "}") ("<" ">")))
 
+
+
+(defun shift-mouse-select (event)
+  "Set the mark and then move point to the position clicked on with
+the mouse.
+This should be bound to a mouse click event type."
+  (interactive "e")
+  (mouse-minibuffer-check event)
+  (if mark-active (exchange-point-and-mark))
+  (set-mark-command nil)
+  ;; Use event-end in case called from mouse-drag-region.
+  ;; If EVENT is a click, event-end and event-start give same value.
+  (posn-set-point (event-end event)))

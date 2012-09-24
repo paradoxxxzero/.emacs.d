@@ -103,7 +103,8 @@
         try-expand-all-abbrevs
         try-expand-list
         try-expand-line
-        try-expand-google))
+        try-expand-google
+        try-expand-google-spelling))
 
 ;; Ido
 (autoload 'ido-everywhere "ido")
@@ -139,7 +140,7 @@
 ;; Tramp remote sudo: /sudo:root@host[#port]:/path/to/file
 (set-default 'tramp-default-proxies-alist (quote ((".*" "\\`root\\'" "/ssh:%h:"))))
 
-(add-to-list 'load-path "~/.emacs.d/elisp/mark-multiple")
+(add-to-list 'load-path "~/.emacs.d/elisp/multiple-cursors")
 
 
 (add-after-save-hook "kozea/pygal/.*\.py$" "cd ~/kozea/pygal/; ~/.envs/pygal/bin/python ./demo/simple_test.py")
@@ -149,7 +150,8 @@
 (add-after-save-hook "kozea/labocube" "wsreload --url 'http://localhost:3795/*'")
 (add-after-save-hook "kozea/elearning" "wsreload --url 'http://manager.l:5999/*'")
 (add-after-save-hook "kozea/elearning" "wsreload --url 'http://student.l:5111/*'")
-(add-after-save-hook "kozea/pygal/demo" "wsreload --url 'http://moulinrouge.l:21112/*'")
+(add-after-save-hook "kozea/pygal/demo/moulinrouge" "wsreload --url 'http://moulinrouge.l:21112/*'")
+(add-after-save-hook "kozea/pygal/demo/cabaret" "wsreload --url 'http://cabaret.l:12221/*'")
 (add-after-save-hook "_/umlaut" "wsreload --url 'file:///home/zero/_/umlaut/index.html'")
 (add-after-save-hook "_/phy" "wsreload --url 'file:///home/zero/_/phy/index.html'")
 (add-after-save-hook "_/gol" "wsreload --url 'file:///home/zero/_/gol/index.html'")
@@ -162,11 +164,15 @@
 (require 'inline-string-rectangle)
 (global-set-key (kbd "C-x r t") 'inline-string-rectangle)
 
-(require 'mark-more-like-this)
-(global-set-key (kbd "C-<") 'mark-previous-like-this)
-(global-set-key (kbd "C->") 'mark-next-like-this)
-(global-set-key (kbd "C-*") 'mark-all-like-this)
-(global-set-key (kbd "C-M-m") 'mark-more-like-this-extended) ; like the other two, but takes an argument (negative is previous)
+(require 'multiple-cursors)
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-*") 'mc/mark-all-like-this)
+(global-set-key (kbd "C-M-m") 'mc/mark-more-like-this-extended) ; like the other two, but takes an argument (negative is previous)
+(global-set-key (kbd "<f6>") 'mark-previous-like-this)
+(global-set-key (kbd "<f7>") 'mark-next-like-this)
+(global-set-key (kbd "<f8>") 'mc/edit-lines)
 
 ;; Keys
 (global-set-key (kbd "M-DEL") 'kill-word)
@@ -227,6 +233,8 @@
 
 (global-set-key (kbd "C-%") 'goto-match-paren)
 (global-set-key (kbd "<f12>") 'shell-command-on-region)
+(global-set-key [S-mouse-1] 'shift-mouse-select)
+(global-set-key [S-down-mouse-1] 'ignore)
 
 ;; (global-set-key (kbd "C-x u") 'undo-tree-undo)
 ;; (global-set-key (kbd "C-x y") 'undo-tree-redo)
