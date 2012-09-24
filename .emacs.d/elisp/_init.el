@@ -140,7 +140,6 @@
 ;; Tramp remote sudo: /sudo:root@host[#port]:/path/to/file
 (set-default 'tramp-default-proxies-alist (quote ((".*" "\\`root\\'" "/ssh:%h:"))))
 
-(add-to-list 'load-path "~/.emacs.d/elisp/multiple-cursors")
 
 
 (add-after-save-hook "kozea/pygal/.*\.py$" "cd ~/kozea/pygal/; ~/.envs/pygal/bin/python ./demo/simple_test.py")
@@ -164,6 +163,7 @@
 (require 'inline-string-rectangle)
 (global-set-key (kbd "C-x r t") 'inline-string-rectangle)
 
+(add-to-list 'load-path "~/.emacs.d/elisp/multiple-cursors")
 (require 'multiple-cursors)
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
@@ -173,6 +173,10 @@
 (global-set-key (kbd "<f6>") 'mark-previous-like-this)
 (global-set-key (kbd "<f7>") 'mark-next-like-this)
 (global-set-key (kbd "<f8>") 'mc/edit-lines)
+
+(add-to-list 'load-path "~/.emacs.d/elisp/expand-region")
+(require 'expand-region)
+(global-set-key (kbd "C- ") 'er/expand-region)
 
 ;; Keys
 (global-set-key (kbd "M-DEL") 'kill-word)
