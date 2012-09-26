@@ -94,3 +94,6 @@
 [submodule ".emacs.d/elisp/expand-region"]
 	path = .emacs.d/elisp/expand-region
 	url = git://github.com/magnars/expand-region.el.git
+[submodule ".emacs.d/elisp/org-redmine"]
+	path = .emacs.d/elisp/org-redmine
+	url = git://github.com/gongo/org-redmine.git
