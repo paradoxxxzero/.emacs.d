@@ -205,6 +205,12 @@
                   (interactive)
                   (other-window -1)))
 
+(global-set-key [C-S-t]
+                (lambda ()
+                  (interactive)
+                  (save-excursion
+                    (left-char)
+                    (transpose-key))))
 
 (global-set-key [C-up] 'duplicate-line-or-region-above)
 (global-set-key [C-down] 'duplicate-line-or-region-below)

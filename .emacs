@@ -73,7 +73,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "#000000" :foreground "#eeeeee" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "unknown" :family "Ubuntu Mono"))))
+ '(default ((t (:background "#000000" :foreground "#eeeeee" :height 98 :foundry "adobe" :family "Source Code Pro"))))
  '(ac-candidate-face ((t (:background "black" :foreground "dark orange"))))
  '(ac-completion-face ((t (:foreground "yellow" :box (:line-width 2 :color "blue" :style released-button)))))
  '(ac-selection-face ((t (:background "black" :foreground "red"))))
