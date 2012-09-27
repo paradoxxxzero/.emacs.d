@@ -97,3 +97,6 @@
 [submodule ".emacs.d/elisp/org-redmine"]
 	path = .emacs.d/elisp/org-redmine
 	url = git://github.com/gongo/org-redmine.git
+[submodule ".emacs.d/elisp/ack-mode"]
+	path = .emacs.d/elisp/ack-mode
+	url = git://github.com/sudish/ack-mode.el.git

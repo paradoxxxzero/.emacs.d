@@ -1,14 +1,6 @@
 (load  "~/.emacs.d/elisp/basic-edit-toolkit.el")
 (load  "~/.emacs.d/elisp/highlight-parentheses/highlight-parentheses.el")
- (load  "~/.emacs.d/elisp/zero-tools.el")
-;; (load  "~/.emacs.d/elisp/mode-line.e;; l")
-;; (load  "~/.__jabber.el")
-;; (require 'jabber-autoloads)
-;; (setq jabber-account-list
-      ;; `(
-        ;; ("fmounier@jabber.kozea.fr" (:network-server . "jabber.keleos.fr") (:password . ,kjabber))
-        ;; ("paradoxxx.zero@gmail.com" (:network-server . "talk.google.com") (:password . ,gtalkjabber) (:connection-type . ssl))
-        ;; ))
+(load  "~/.emacs.d/elisp/zero-tools.el")
 
 ;; Autoloads
 (add-to-list 'load-path "~/.emacs.d/elisp/lua-mode/")
@@ -80,12 +72,8 @@
 (add-to-list 'load-path "~/.emacs.d/elisp/flymake-cursor")
 (require 'flymake-cursor)
 
-
-(add-to-list 'load-path "~/.emacs.d/elisp/full-ack")
-(autoload 'ack-same "full-ack" nil t)
-(autoload 'ack "full-ack" nil t)
-(autoload 'ack-find-same-file "full-ack" nil t)
-(autoload 'ack-find-file "full-ack" nil t)
+(add-to-list 'load-path "~/.emacs.d/elisp/ack-mode")
+(autoload 'ack "ack-mode" nil t)
 
 (add-to-list 'load-path "~/.emacs.d/elisp/pretty-mode")
 (require 'pretty-mode)
@@ -113,27 +101,6 @@
 
 (setq ido-enable-flex-matching t) ;; enable fuzzy matching
 
-;; (add-to-list 'load-path "~/.emacs.d/elisp/pylookup")
-;; (setq pylookup-dir "~/.emacs.d/elisp/pylookup")
-;; (add-to-list 'load-path pylookup-dir)
-
-;; (setq-default frame-title-format (list "%b - Emacs"))
-;; load pylookup when compile time
-;; (eval-when-compile (require 'pylookup))
-
-;; set executable file and db file
-;; (setq pylookup-program (concat pylookup-dir "/pylookup.py"))
-;; (setq pylookup-db-file (concat pylookup-dir "/pylookup.db"))
-
-;; set search option if you want
-;; (setq pylookup-search-options '("--insensitive" "0" "--desc" "0"))
-
-;; to speedup, just load it on demand
-;; (autoload 'pylookup-lookup "pylookup"
-  ;; "Lookup SEARCH-TERM in the Python HTML indexes." t)
-
-;; (autoload 'pylookup-update "pylookup" 
-  ;; "Run pylookup-update and create the database at `pylookup-db-file'." t)
 
 (standard-display-ascii ?\t "↹    ")
 
