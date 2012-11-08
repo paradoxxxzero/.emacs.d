@@ -304,3 +304,7 @@ This should be bound to a mouse click event type."
   ;; Use event-end in case called from mouse-drag-region.
   ;; If EVENT is a click, event-end and event-start give same value.
   (posn-set-point (event-end event)))
+
+(defun psql-on-region (begin end)
+  (interactive "r")
+  (shell-command-on-region begin end "psql -U elearning -d elearning_data" nil nil nil t))

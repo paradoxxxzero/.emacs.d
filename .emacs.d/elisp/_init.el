@@ -72,8 +72,13 @@
 (add-to-list 'load-path "~/.emacs.d/elisp/flymake-cursor")
 (require 'flymake-cursor)
 
-(add-to-list 'load-path "~/.emacs.d/elisp/ack-mode")
-(autoload 'ack "ack-mode" nil t)
+(add-to-list 'load-path "~/.emacs.d/elisp/ack-and-a-half")
+(require 'ack-and-a-half)
+
+(defalias 'ack 'ack-and-a-half)
+(defalias 'ack-same 'ack-and-a-half-same)
+(defalias 'ack-find-file 'ack-and-a-half-find-file)
+(defalias 'ack-find-file-same 'ack-and-a-half-find-file-same)
 
 (add-to-list 'load-path "~/.emacs.d/elisp/pretty-mode")
 (require 'pretty-mode)
@@ -102,7 +107,7 @@
 (setq ido-enable-flex-matching t) ;; enable fuzzy matching
 
 
-(standard-display-ascii ?\t "↹    ")
+(standard-display-ascii ?\t "↹  ")
 
 ;; Tramp remote sudo: /sudo:root@host[#port]:/path/to/file
 (set-default 'tramp-default-proxies-alist (quote ((".*" "\\`root\\'" "/ssh:%h:"))))
@@ -122,6 +127,7 @@
 (add-after-save-hook "_/phy" "wsreload --url 'file:///home/zero/_/phy/index.html'")
 (add-after-save-hook "_/gol" "wsreload --url 'file:///home/zero/_/gol/index.html'")
 (add-after-save-hook "_/coffee2d" "wsreload --url 'file:///home/zero/_/coffee2d/index.html'")
+(add-after-save-hook "kozea/w" "wsreload --url 'http://l:1984/*'")
 
 (add-to-list 'load-path "~/.emacs.d/elisp/pyregexp") ;; if the files are not already in the load path
 (require 'pyregexp)
@@ -156,6 +162,7 @@
 (global-set-key (kbd "C-$") 'comment-or-uncomment-region+)
 (global-set-key (kbd "C-.") 'backward-kill-line)
 (global-set-key (kbd "C-à") 'ack-same)
+(global-set-key (kbd "M-à") 'ack)
 (global-set-key (kbd "s-<tab>") 'swap-buffers)
 (global-set-key (kbd "C-s-<tab>") 'clone-buffer)
 
@@ -172,12 +179,12 @@
                   (interactive)
                   (other-window -1)))
 
-(global-set-key [C-S-t]
+(global-set-key (kbd "C-S-t")
                 (lambda ()
                   (interactive)
                   (save-excursion
-                    (left-char)
-                    (transpose-key))))
+                    (left-char 1)
+                    (transpose-chars 1))))
 
 (global-set-key [C-up] 'duplicate-line-or-region-above)
 (global-set-key [C-down] 'duplicate-line-or-region-below)
@@ -203,11 +210,12 @@
 (global-set-key (kbd "s-C-<up>") 'shrink-window)
 (global-set-key (kbd "s-C-<down>") 'enlarge-window)
 
-(global-set-key (kbd "<XF86Calculator>") 'flymake-start-syntax-check)
+(global-set-key (kbd "<XF86Calculator>") 'psql-on-region)
 (global-set-key (kbd "<XF86Mail>") 'pylookup-lookup)
 
 (global-set-key (kbd "C-%") 'goto-match-paren)
 (global-set-key (kbd "<f12>") 'shell-command-on-region)
+(global-set-key (kbd "<M-dead-circumflex>") 'delete-indentation)
 (global-set-key [S-mouse-1] 'shift-mouse-select)
 (global-set-key [S-down-mouse-1] 'ignore)
 

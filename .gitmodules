@@ -100,3 +100,6 @@
 [submodule ".emacs.d/elisp/ack-mode"]
 	path = .emacs.d/elisp/ack-mode
 	url = git://github.com/sudish/ack-mode.el.git
+[submodule ".emacs.d/elisp/ack-and-a-half"]
+	path = .emacs.d/elisp/ack-and-a-half
+	url = git://github.com/jhelwig/ack-and-a-half.git

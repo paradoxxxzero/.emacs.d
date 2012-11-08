@@ -112,6 +112,7 @@
  '(hl-line ((t (:background "gray7"))))
  '(jabber-chat-prompt-local ((t (:foreground "medium spring green" :weight bold))))
  '(jabber-roster-user-online ((t (:foreground "deep sky blue" :slant normal :weight bold))))
+ '(lazy-highlight ((t (:background "gray14"))))
  '(menu ((t (:foreground "saddle brown"))))
  '(minibuffer-prompt ((t (:bold t :foreground "#ff6600"))))
  '(minimap-font-face ((t (:height 20 :family "DejaVu Sans Mono"))))
