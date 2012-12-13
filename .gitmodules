@@ -103,3 +103,21 @@
 [submodule ".emacs.d/elisp/ack-and-a-half"]
 	path = .emacs.d/elisp/ack-and-a-half
 	url = git://github.com/jhelwig/ack-and-a-half.git
+[submodule ".emacs.d/elisp/emacs-jedi"]
+	path = .emacs.d/elisp/emacs-jedi
+	url = git://github.com/tkf/emacs-jedi.git
+[submodule ".emacs.d/elisp/emacs-epc"]
+	path = .emacs.d/elisp/emacs-epc
+	url = git://github.com/kiwanami/emacs-epc.git
+[submodule ".emacs.d/elisp/emacs-deferred"]
+	path = .emacs.d/elisp/emacs-deferred
+	url = git://github.com/kiwanami/emacs-deferred.git
+[submodule ".emacs.d/elisp/auto-complete"]
+	path = .emacs.d/elisp/auto-complete
+	url = git://github.com/auto-complete/auto-complete.git
+[submodule ".emacs.d/elisp/emacs-ctable"]
+	path = .emacs.d/elisp/emacs-ctable
+	url = git://github.com/kiwanami/emacs-ctable.git
+[submodule ".emacs.d/elisp/popup-el"]
+	path = .emacs.d/elisp/popup-el
+	url = git://github.com/auto-complete/popup-el.git

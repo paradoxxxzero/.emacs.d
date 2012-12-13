@@ -112,7 +112,18 @@
 ;; Tramp remote sudo: /sudo:root@host[#port]:/path/to/file
 (set-default 'tramp-default-proxies-alist (quote ((".*" "\\`root\\'" "/ssh:%h:"))))
 
-
+(add-to-list 'load-path "~/.emacs.d/elisp/emacs-epc")
+(add-to-list 'load-path "~/.emacs.d/elisp/emacs-deferred")
+(add-to-list 'load-path "~/.emacs.d/elisp/auto-complete")
+(add-to-list 'load-path "~/.emacs.d/elisp/emacs-jedi")
+(add-to-list 'load-path "~/.emacs.d/elisp/emacs-ctable")
+(add-to-list 'load-path "~/.emacs.d/elisp/popup-el")
+(require 'auto-complete)
+(define-key ac-completing-map [right] 'ac-expand)
+(global-auto-complete-mode +1)
+(setq jedi:setup-keys t)
+(autoload 'jedi:setup "jedi" nil t)
+(add-hook 'python-mode-hook 'jedi:setup)
 
 (add-after-save-hook "kozea/pygal/.*\.py$" "cd ~/kozea/pygal/; ~/.envs/pygal/bin/python ./demo/simple_test.py")
 (add-after-save-hook "kozea/sitenco/projects/pygal/" "wsreload --url 'http://pygal.l/*'")
@@ -152,7 +163,6 @@
 ;; Keys
 (global-set-key (kbd "M-DEL") 'kill-word)
 (global-set-key (kbd "<M-backspace>") 'backward-kill-word)
-(global-set-key (kbd "s-SPC") 'python-completion-complete-at-point)
 (global-set-key (kbd "M-SPC") 'hippie-expand)
 (global-set-key (kbd "M-RET") 'flymake-display-err-menu-for-current-line)
 (global-set-key [f10] 'flymake-goto-prev-error)
@@ -210,8 +220,11 @@
 (global-set-key (kbd "s-C-<up>") 'shrink-window)
 (global-set-key (kbd "s-C-<down>") 'enlarge-window)
 
-(global-set-key (kbd "<XF86Calculator>") 'psql-on-region)
+(global-set-key (kbd "<XF86Calculator>") 'psql-on-region-elearning)
+(global-set-key (kbd "<S-XF86Calculator>") 'psql-on-region-hydra)
 (global-set-key (kbd "<XF86Mail>") 'pylookup-lookup)
+
+(global-set-key (kbd "<XF86HomePage>") 'universal-argument)
 
 (global-set-key (kbd "C-%") 'goto-match-paren)
 (global-set-key (kbd "<f12>") 'shell-command-on-region)
