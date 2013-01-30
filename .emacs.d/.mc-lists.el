@@ -4,14 +4,18 @@
 (setq mc/cmds-to-run-for-all
       '(
         beginning-of-buffer
+        coffee-dedent-line-backspace
+        delete-indentation
         ido-find-file
+        indent-for-tab-command
         jedi:dot-complete
+        kmacro-start-macro-or-insert-counter
+        python-indent-dedent-line-backspace
         repeat
+        sgml-close-tag
         sgml-slash
         ))
 
 (setq mc/cmds-to-run-once
       '(
-        coffee-dedent-line-backspace
-        python-indent-dedent-line-backspace
         ))
