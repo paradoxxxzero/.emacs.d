@@ -54,6 +54,15 @@
 (add-to-list 'load-path "~/.emacs.d/elisp/powerline")
 (require 'powerline)
 
+(add-to-list 'load-path "~/.emacs.d/elisp/emacs-git-gutter")
+(autoload 'git-gutter "git-gutter" nil t)
+(autoload 'git-gutter-mode "git-gutter-mode" nil t)
+(autoload 'global-git-gutter-mode "global-git-gutter-mode" nil t)
+(require 'git-gutter)
+(global-git-gutter-mode t)
+
+(add-to-list 'auto-mode-alist '("\\.less$" . less-css-mode))
+
 ;; (add-to-list 'load-path "~/.emacs.d/elisp/anything-config")
 ;; (require 'anything-config)
 
@@ -70,6 +79,13 @@
 (add-hook 'python-mode-hook 'flymake-find-file-hook)
 (add-hook 'css-mode-hook 'flymake-find-file-hook)
 (add-to-list 'load-path "~/.emacs.d/elisp/flymake-cursor")
+
+(add-to-list 'load-path "~/.emacs.d/elisp/flymake-easy")
+(add-to-list 'load-path "~/.emacs.d/elisp/flymake-sass")
+(require 'flymake-sass)
+(add-hook 'sass-mode-hook 'flymake-sass-load)
+(add-hook 'scss-mode-hook 'flymake-sass-load)
+
 (require 'flymake-cursor)
 
 (add-to-list 'load-path "~/.emacs.d/elisp/ack-and-a-half")
@@ -127,8 +143,8 @@
 
 (add-after-save-hook "kozea/pygal/.*\.py$" "cd ~/kozea/pygal/; ~/.envs/pygal/bin/python ./demo/simple_test.py")
 (add-after-save-hook "kozea/sitenco/projects/pygal/" "wsreload --url 'http://pygal.l/*'")
-(add-after-save-hook "kozea/hydra" "wsreload --url 'http://*.pharminfo.fr.zero:5000/*'")
-(add-after-save-hook "kozea/hydra" "wsreload --url 'http://*.groupinfo.fr.zero:5001/*'")
+(add-after-save-hook "kozea/hydra/.*\.j.*" "wsreload --url 'http://*.pharminfo.fr.zero:5000/*'")
+(add-after-save-hook "kozea/hydra/.*\.j.*" "wsreload --url 'http://*.groupinfo.fr.zero:5001/*'")
 (add-after-save-hook "kozea/labocube" "wsreload --url 'http://localhost:3795/*'")
 (add-after-save-hook "kozea/elearning" "wsreload --url 'http://manager.l:5999/*'")
 (add-after-save-hook "kozea/elearning" "wsreload --url 'http://student.l:5111/*'")
@@ -139,6 +155,7 @@
 (add-after-save-hook "_/gol" "wsreload --url 'file:///home/zero/_/gol/index.html'")
 (add-after-save-hook "_/coffee2d" "wsreload --url 'file:///home/zero/_/coffee2d/index.html'")
 (add-after-save-hook "kozea/w" "wsreload --url 'http://l:1984/*'")
+(add-after-save-hook "_/responsive/inuit" "cd ~/_/responsive/inuit/static/inuit.css; sass style.scss:style.min.css && wsreload --url 'http://l:1242/*'")
 
 (add-to-list 'load-path "~/.emacs.d/elisp/pyregexp") ;; if the files are not already in the load path
 (require 'pyregexp)
@@ -152,15 +169,35 @@
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-*") 'mc/mark-all-like-this)
 (global-set-key (kbd "C-M-m") 'mc/mark-more-like-this-extended) ; like the other two, but takes an argument (negative is previous)
+
+(global-set-key (kbd "s-i") 'mc/mark-all-like-this)
+(global-set-key (kbd "s-I") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-s-I") 'mc/mark-previous-like-this)
+(global-set-key (kbd "s-TAB") 'mc/edit-lines)
+
 (global-set-key (kbd "<f6>") 'mark-previous-like-this)
 (global-set-key (kbd "<f7>") 'mark-next-like-this)
 (global-set-key (kbd "<f8>") 'mc/edit-lines)
+(global-set-key (kbd "<f9>") 'sort-lines)
 
 (add-to-list 'load-path "~/.emacs.d/elisp/expand-region")
 (require 'expand-region)
 (global-set-key (kbd "C- ") 'er/expand-region)
 
 ;; Keys
+;; Map dedicated shift (keysym Shift_R = F32)
+(fset 'parens "()\C-b")
+(fset 'brackets "[]\C-b")
+(fset 'curlys "{}\C-b")
+(fset 'angles "<>\C-b")
+(fset 'quotes "\"\"\C-b")
+(global-set-key [f32] 'parens)
+(global-set-key [S-f32] 'brackets)
+(global-set-key [M-f32] 'curlys)
+(global-set-key [s-f32] 'angles)
+(global-set-key [C-f32] 'quotes)
+
+(global-set-key (kbd "C-x C-u") 'undo)
 (global-set-key (kbd "M-DEL") 'kill-word)
 (global-set-key (kbd "<M-backspace>") 'backward-kill-word)
 (global-set-key (kbd "M-SPC") 'hippie-expand)

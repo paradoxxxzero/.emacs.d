@@ -121,3 +121,12 @@
 [submodule ".emacs.d/elisp/popup-el"]
 	path = .emacs.d/elisp/popup-el
 	url = git://github.com/auto-complete/popup-el.git
+[submodule ".emacs.d/elisp/flymake-easy"]
+	path = .emacs.d/elisp/flymake-easy
+	url = git://github.com/purcell/flymake-easy.git
+[submodule ".emacs.d/elisp/flymake-sass"]
+	path = .emacs.d/elisp/flymake-sass
+	url = git://github.com/purcell/flymake-sass.git
+[submodule ".emacs.d/elisp/emacs-git-gutter"]
+	path = .emacs.d/elisp/emacs-git-gutter
+	url = git://github.com/syohex/emacs-git-gutter.git

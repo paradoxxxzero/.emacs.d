@@ -3,14 +3,19 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        backward-kill-line
         beginning-of-buffer
         coffee-dedent-line-backspace
         delete-indentation
+        duplicate-line-or-region-below
         ido-find-file
         indent-for-tab-command
         jedi:dot-complete
+        kill-region
         kmacro-start-macro-or-insert-counter
+        move-text-down
         python-indent-dedent-line-backspace
+        python-indent-electric-colon
         repeat
         sgml-close-tag
         sgml-slash
@@ -18,4 +23,6 @@
 
 (setq mc/cmds-to-run-once
       '(
+        eval-print-last-sexp
+        mouse-set-region
         ))
