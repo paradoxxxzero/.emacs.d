@@ -8,16 +8,19 @@
         coffee-dedent-line-backspace
         delete-indentation
         duplicate-line-or-region-below
+        haml-electric-backspace
         ido-find-file
         indent-for-tab-command
         jedi:dot-complete
         kill-region
         kmacro-start-macro-or-insert-counter
         move-text-down
+        nxml-electric-slash
         python-indent-dedent-line-backspace
         python-indent-electric-colon
         repeat
         sgml-close-tag
+        sgml-maybe-name-self
         sgml-slash
         ))
 

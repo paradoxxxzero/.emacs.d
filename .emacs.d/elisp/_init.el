@@ -1,3 +1,4 @@
+(setq ring-bell-function (lambda () (call-process-shell-command "xset led 3; xset -led 3" nil 0 nil)))
 (load  "~/.emacs.d/elisp/basic-edit-toolkit.el")
 (load  "~/.emacs.d/elisp/highlight-parentheses/highlight-parentheses.el")
 (load  "~/.emacs.d/elisp/zero-tools.el")
@@ -48,8 +49,8 @@
 (add-to-list 'auto-mode-alist '("\\.pxd\\'" . cython-mode))
 (add-to-list 'auto-mode-alist '("\\.pxi\\'" . cython-mode))
 
-;; (add-to-list 'load-path "~/.emacs.d/elisp/undo-tree")
-;; (require 'undo-tree)
+(add-to-list 'load-path "~/.emacs.d/elisp/virtualenv.el")
+(require 'virtualenv)
 
 (add-to-list 'load-path "~/.emacs.d/elisp/powerline")
 (require 'powerline)
@@ -62,9 +63,6 @@
 (global-git-gutter-mode t)
 
 (add-to-list 'auto-mode-alist '("\\.less$" . less-css-mode))
-
-;; (add-to-list 'load-path "~/.emacs.d/elisp/anything-config")
-;; (require 'anything-config)
 
 (add-to-list 'load-path "~/.emacs.d/elisp/flymake")
 (require 'flymake)
@@ -161,6 +159,10 @@
 (require 'pyregexp)
 ;;(global-set-key (kbd "M-à") 'pyregexp-replace)
 
+(add-to-list 'load-path "~/.emacs.d/elisp/zencoding")
+(require 'zencoding-mode)
+(add-hook 'sgml-mode-hook 'zencoding-mode) ;; Auto-start on any markup modes
+(global-set-key (kbd "s-SPC") 'zencoding-expand-line)
 
 (add-to-list 'load-path "~/.emacs.d/elisp/multiple-cursors")
 (require 'multiple-cursors)
@@ -259,7 +261,7 @@
 
 (global-set-key (kbd "<XF86Calculator>") 'psql-on-region-elearning)
 (global-set-key (kbd "<S-XF86Calculator>") 'psql-on-region-hydra)
-(global-set-key (kbd "<XF86Mail>") 'pylookup-lookup)
+(global-set-key (kbd "<XF86Mail>") 'virtualenv-workon)
 
 (global-set-key (kbd "<XF86HomePage>") 'universal-argument)
 
@@ -268,6 +270,9 @@
 (global-set-key (kbd "<M-dead-circumflex>") 'delete-indentation)
 (global-set-key [S-mouse-1] 'shift-mouse-select)
 (global-set-key [S-down-mouse-1] 'ignore)
+
+(global-set-key (kbd "C-c o") 'osener/github-browse-file)
+
 
 ;; (global-set-key (kbd "C-x u") 'undo-tree-undo)
 ;; (global-set-key (kbd "C-x y") 'undo-tree-redo)

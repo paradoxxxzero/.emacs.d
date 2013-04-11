@@ -130,3 +130,9 @@
 [submodule ".emacs.d/elisp/emacs-git-gutter"]
 	path = .emacs.d/elisp/emacs-git-gutter
 	url = git://github.com/syohex/emacs-git-gutter.git
+[submodule ".emacs.d/elisp/virtualenv.el"]
+	path = .emacs.d/elisp/virtualenv.el
+	url = git://github.com/aculich/virtualenv.el.git
+[submodule ".emacs.d/elisp/zencoding"]
+	path = .emacs.d/elisp/zencoding
+	url = git://github.com/smihica/zencoding.git

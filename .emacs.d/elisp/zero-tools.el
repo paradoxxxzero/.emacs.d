@@ -58,11 +58,21 @@
 (defun ido-recentf-open ()
   "Use `ido-completing-read' to \\[find-file] a recent file"
   (interactive)
-  (progn
-    (recentf-mode t)
-    (if (find-file (ido-completing-read "Find recent file: " recentf-list))
-        (message "Opening file...")
-      (message "Aborting"))))
+  (let* ((file-assoc-list
+          (mapcar (lambda (x)
+                    (cons (file-name-nondirectory x)
+                          x))
+                  recentf-list))
+         (filename-list
+          (remove-duplicates (mapcar #'car file-assoc-list)
+                             :test #'string=))
+         (filename (ido-completing-read "Choose recent file: "
+                                        filename-list
+                                        nil
+                                        t)))
+    (when filename
+      (find-file (cdr (assoc filename
+                             file-assoc-list))))))
 
 (defun toggle-fullscreen ()
   (interactive)
@@ -74,9 +84,9 @@
 
 ;; Search At Point
 (require 'etags) ;; provides `find-tag-default' in Emacs 21.
-  
+
 (defun isearch-yank-regexp (regexp)
-  "Pull REGEXP into search regexp." 
+  "Pull REGEXP into search regexp."
   (let ((isearch-regexp nil)) ;; Dynamic binding of global.
     (isearch-yank-string regexp))
   (isearch-search-and-update))
@@ -146,7 +156,7 @@ matches."
     (overwrite-mode
       (set-cursor-color "red")
       (setq cursor-type 'box))
-    (t 
+    (t
       (set-cursor-color "yellow")
       (setq cursor-type '(bar . 3)))))
 
@@ -217,8 +227,8 @@ matches."
           (he-init-string (he-dabbrev-beg) (point))
           (setq he-expand-list
                 (if (not (equal he-search-string ""))
-                    (parseresults 
-                     (urlget 
+                    (parseresults
+                     (urlget
                       (concat "http://suggestqueries.google.com/complete/search?client=firefox&hl=fr&q="
                               he-search-string)))))
           (setq he-search-loc2 0)))
@@ -253,7 +263,7 @@ matches."
         (he-substitute-string expansion t)
         t))))
 
-(defun swap-buffers () 
+(defun swap-buffers ()
   (interactive)
   (let ((w1 (selected-window)) (w2 (next-window)))
     (let ((b1 (window-buffer w1)) (b2 (window-buffer w2)))
@@ -312,3 +322,74 @@ This should be bound to a mouse click event type."
 (defun psql-on-region-hydra (begin end)
   (interactive "r")
   (shell-command-on-region begin end "psql -U hydra -d hydra" nil nil nil t))
+
+
+;; Open in github http://ozansener.com/blog/view-the-file-youre-editing-in-emacs-on-github/
+(autoload 'vc-git-root "vc-git")
+
+(defvar osener/github-force-master nil
+  "Whether to use \"master\" regardless of current branch
+This should only ever be `let'-bound, not set outright.")
+
+(defun osener/github-relative-url ()
+  "Return \"username/repo\" for current repository.
+
+Error out if this isn't a GitHub repo."
+  (let ((url (vc-git--run-command-string nil "config" "remote.origin.url")))
+    (unless url (error "Not in a GitHub repo"))
+    (when (and url (string-match "github.com:?/?\\(.*\\)" url))
+      (replace-regexp-in-string "\\.git" "" (match-string 1 url)))))
+
+(defun osener/github-repo-relative-path ()
+  "Return the path to the current file relative to the repository root."
+  (let* ((root (ignore-errors (vc-git-root buffer-file-name))))
+    (and root (file-relative-name buffer-file-name root))))
+
+(defun osener/github-ahead-p ()
+  "Return non-nil if current git HEAD is ahead of origin/master"
+  (let ((rev (vc-git--run-command-string
+              nil "rev-list" "--left-right" "origin/master...HEAD")))
+    (and (> (length rev) 0)
+         (string-equal (substring rev 0 1) ">"))))
+
+(defun osener/github-current-rev ()
+  "Return the SHA1 of HEAD if it is not ahead of origin/master.
+If osener/github-force-master is non-nil, return \"master\".
+Otherwise, return the name of the current  branch."
+  (cond
+   (osener/github-force-master "master")
+   ((osener/github-ahead-p) (car (vc-git-branches)))
+   (t (let ((rev (vc-git--run-command-string nil "rev-parse" "HEAD")))
+        (and rev (replace-regexp-in-string "\n" "" rev))))))
+
+(defun osener/github-url (&optional anchor)
+  "Load http://github.com/user/repo/file#ANCHOR in a web browser and add it to
+the kill ring."
+  (let ((url (concat "https://github.com/"
+                     (osener/github-relative-url)
+                     "/blob/" (osener/github-current-rev) "/"
+                     (osener/github-repo-relative-path)
+                     (when anchor (concat "#" anchor)))))
+    (kill-new url)
+    (browse-url url)))
+
+(defun osener/github-browse-file (force-master)
+  "Show the GitHub webpage for the current file. The URL for the webpage is
+added to the kill ring.
+
+In Transient Mark mode, if the mark is active, highlight the contents of the
+region."
+  (interactive "P")
+  (let ((path (osener/github-repo-relative-path))
+        (osener/github-force-master force-master)
+        start
+        end)
+    (when mark-ring
+      (setq start (line-number-at-pos (region-beginning))
+            end (line-number-at-pos (region-end)))
+      (when (eq (char-before (region-end)) ?\n) (decf end)))
+
+    (osener/github-url
+     (when (and transient-mark-mode mark-active)
+       (if (eq start end) (format "L%d" start)
+         (format "L%d-%d" start end))))))
