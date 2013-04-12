@@ -69,7 +69,7 @@
 	url = git://github.com/emacsmirror/undo-tree.git
 [submodule ".emacs.d/elisp/anything-config"]
 	path = .emacs.d/elisp/anything-config
-	url = git://repo.or.cz/anything-config.git
+	url = git://github.com/fgeller/anything-config.git
 [submodule ".emacs.d/elisp/nyan-mode"]
 	path = .emacs.d/elisp/nyan-mode
 	url = git://github.com/TeMPOraL/nyan-mode.git
