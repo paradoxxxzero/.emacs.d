@@ -6,6 +6,7 @@
         backward-kill-line
         beginning-of-buffer
         coffee-dedent-line-backspace
+        compile-goto-error
         delete-indentation
         duplicate-line-or-region-below
         haml-electric-backspace
@@ -22,10 +23,13 @@
         sgml-close-tag
         sgml-maybe-name-self
         sgml-slash
+        transpose-words
+        zencoding-expand-line
         ))
 
 (setq mc/cmds-to-run-once
       '(
         eval-print-last-sexp
+        ido-switch-buffer
         mouse-set-region
         ))

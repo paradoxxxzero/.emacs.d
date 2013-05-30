@@ -133,7 +133,6 @@
 (add-to-list 'load-path "~/.emacs.d/elisp/emacs-ctable")
 (add-to-list 'load-path "~/.emacs.d/elisp/popup-el")
 (require 'auto-complete)
-(define-key ac-completing-map [right] 'ac-expand)
 (global-auto-complete-mode +1)
 (setq jedi:setup-keys t)
 (autoload 'jedi:setup "jedi" nil t)
@@ -261,6 +260,7 @@
 
 (global-set-key (kbd "<XF86Calculator>") 'psql-on-region-elearning)
 (global-set-key (kbd "<S-XF86Calculator>") 'psql-on-region-hydra)
+(global-set-key (kbd "<M-XF86Calculator>") 'psql-on-region-pystil)
 (global-set-key (kbd "<XF86Mail>") 'virtualenv-workon)
 
 (global-set-key (kbd "<XF86HomePage>") 'universal-argument)

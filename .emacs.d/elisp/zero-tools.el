@@ -323,6 +323,10 @@ This should be bound to a mouse click event type."
   (interactive "r")
   (shell-command-on-region begin end "psql -U hydra -d hydra" nil nil nil t))
 
+(defun psql-on-region-pystil (begin end)
+  (interactive "r")
+  (shell-command-on-region begin end "psql -U pystil -d pystil" nil nil nil t))
+
 
 ;; Open in github http://ozansener.com/blog/view-the-file-youre-editing-in-emacs-on-github/
 (autoload 'vc-git-root "vc-git")
