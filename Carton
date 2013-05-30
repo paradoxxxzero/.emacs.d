@@ -1,0 +1,28 @@
+(source "melpa" "http://melpa.milkbox.net/packages/")
+
+;; Theme
+(depends-on "noctilux-theme")
+
+;; Tools
+(depends-on "ack-and-a-half")
+(depends-on "move-text")
+(depends-on "multiple-cursors")
+(depends-on "pyregexp")
+(depends-on "zencoding-mode")
+
+;; UI
+(depends-on "git-gutter")
+(depends-on "rainbow-delimiters")
+(depends-on "ido-ubiquitous")
+(depends-on "smex")
+(depends-on "powerline")
+(depends-on "pretty-mode")
+
+;; Modes
+(depends-on "coffee-mode")
+(depends-on "sass-mode")
+(depends-on "jinja2-mode")
+(depends-on "js3-mode")
+
+;; Check
+(depends-on "flycheck")
