@@ -49,9 +49,6 @@
 [submodule ".emacs.d/elisp/haml-mode"]
 	path = .emacs.d/elisp/haml-mode
 	url = git://github.com/nex3/haml-mode.git
-[submodule ".emacs.d/elisp/python-mode"]
-	path = .emacs.d/elisp/python-mode
-	url = git://github.com/fgallina/python.el.git
 [submodule ".emacs.d/elisp/pretty-mode"]
 	path = .emacs.d/elisp/pretty-mode
 	url = git://github.com/paradoxxxzero/pretty-mode.git

@@ -24,10 +24,6 @@
 (autoload 'yaml-mode "yaml-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.yaml$" . yaml-mode))
 
-(add-to-list 'load-path "~/.emacs.d/elisp/python-mode/")
-(autoload 'python-mode "python" nil t)
-(add-to-list 'auto-mode-alist '("\\.py$" . python-mode))
-
 (add-to-list 'load-path "~/.emacs.d/elisp/haml-mode/")
 (autoload 'haml-mode "haml-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.haml$" . haml-mode))
@@ -43,11 +39,6 @@
 (add-to-list 'load-path "~/.emacs.d/elisp/less-css-mode/")
 (autoload 'less-css-mode "less-css-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.less$" . less-css-mode))
-
-(autoload 'cython-mode "cython-mode" nil t)
-(add-to-list 'auto-mode-alist '("\\.pyx\\'" . cython-mode))
-(add-to-list 'auto-mode-alist '("\\.pxd\\'" . cython-mode))
-(add-to-list 'auto-mode-alist '("\\.pxi\\'" . cython-mode))
 
 (add-to-list 'load-path "~/.emacs.d/elisp/virtualenv.el")
 (require 'virtualenv)
